@@ -8,6 +8,12 @@ import type {
   Room,
   RoomFeature,
   ServiceResult,
+  VirtualTourData,
+  WhyChooseUsData,
+  WhyChooseUsFeature,
+  Amenity,
+  LocationData,
+  NearbyPlace,
 } from '@/types';
 import { HERO_AMENITY_CHIPS } from '@/constants';
 
@@ -26,6 +32,18 @@ export interface IGalleryService {
 }
 export interface IRoomsService {
   getRooms(featuredOnly?: boolean, limit?: number): Promise<ServiceResult<ReadonlyArray<Room>>>;
+}
+export interface IVirtualTourService {
+  getVirtualTour(): Promise<ServiceResult<VirtualTourData>>;
+}
+export interface IWhyChooseUsService {
+  getWhyChooseUs(): Promise<ServiceResult<WhyChooseUsData>>;
+}
+export interface IAmenitiesService {
+  getAmenities(activeOnly?: boolean, limit?: number): Promise<ServiceResult<ReadonlyArray<Amenity>>>;
+}
+export interface ILocationService {
+  getLocation(): Promise<ServiceResult<LocationData>>;
 }
 
 // ------------------------------ Mock Media ------------------------------
@@ -331,8 +349,155 @@ function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+// ------------------------------ Phase 2 MOCK DATA ------------------------------
+
+const MOCK_VIRTUAL_TOUR: VirtualTourData = {
+  id: 'vt-main',
+  enabled: true,
+  title: 'Take a Virtual Tour',
+  description:
+    'Explore every corner of Ankit Da Mess from the comfort of your home. Premium walkthrough of rooms, common areas, and rooftop.',
+  posterUrl:
+    'https://images.unsplash.com/photo-1582582621959-48d27397dc69?auto=format&fit=crop&w=1400&q=80',
+  posterAlt:
+    'Ankit Da Mess front facade — three-story building with balcony, terracotta accents, and green plants on railings',
+  posterWidth: 1400,
+  posterHeight: 930,
+  videoUrl: 'https://cdn.coverr.co/videos/coverr-walking-through-a-hotel-lobby-9657/1080p.mp4',
+  ctaText: 'Watch Full Video',
+  ctaHref: 'https://www.youtube.com/@ankitdamess',
+  supportingText:
+    'Explore Ankit Da Mess from the comfort of your home.',
+  panorama: false,
+};
+
+const MOCK_WHY_CHOOSE_FEATURES: ReadonlyArray<WhyChooseUsFeature> = [
+  {
+    id: 'wcu-1',
+    iconKey: 'Wallet2',
+    title: 'Affordable Pricing',
+    description:
+      'Pocket-friendly rates for students and working professionals — no hidden fees, transparent billing every month.',
+    sortOrder: 0,
+    active: true,
+  },
+  {
+    id: 'wcu-2',
+    iconKey: 'ShieldCheck',
+    title: 'Trusted & Safe',
+    description:
+      'A secure and friendly environment you can rely on. CCTV, caretaker on-site, and verified residents only.',
+    sortOrder: 1,
+    active: true,
+  },
+  {
+    id: 'wcu-3',
+    iconKey: 'MapPin',
+    title: 'Best Location',
+    description:
+      'Walking distance from colleges, markets & transport. Durgapur\u2019s most convenient residential spot.',
+    sortOrder: 2,
+    active: true,
+  },
+  {
+    id: 'wcu-4',
+    iconKey: 'Heart',
+    title: 'Home Like Comfort',
+    description:
+      'Homely food, clean rooms and peaceful atmosphere. Every small detail designed to feel like home.',
+    sortOrder: 3,
+    active: true,
+  },
+];
+
+const MOCK_WHY_CHOOSE: WhyChooseUsData = {
+  id: 'wcu-main',
+  heading: 'Why Choose Ankit Da Mess?',
+  subheading:
+    'More than a PG — a community built for comfort, safety, and productivity.',
+  features: MOCK_WHY_CHOOSE_FEATURES,
+};
+
+const MOCK_AMENITIES: ReadonlyArray<Amenity> = [
+  { id: 'am-1', name: 'High-Speed WiFi', iconKey: 'Wifi', description: 'Fiber broadband, 100+ Mbps', category: 'standard', sortOrder: 0, active: true },
+  { id: 'am-2', name: '24×7 Water Supply', iconKey: 'Droplets', description: 'Borewell + municipal backup', category: 'standard', sortOrder: 1, active: true },
+  { id: 'am-3', name: 'Electricity Backup', iconKey: 'Zap', description: 'Inverter for lights & fans', category: 'standard', sortOrder: 2, active: true },
+  { id: 'am-4', name: 'Home Style Food', iconKey: 'UtensilsCrossed', description: 'Veg & Non-Veg daily menu', category: 'lifestyle', sortOrder: 3, active: true },
+  { id: 'am-5', name: 'CCTV Security', iconKey: 'ShieldCheck', description: '24/7 cameras on all floors', category: 'security', sortOrder: 4, active: true },
+  { id: 'am-6', name: 'Daily Cleaning', iconKey: 'Sparkles', description: 'Room & common area housekeeping', category: 'standard', sortOrder: 5, active: true },
+  { id: 'am-7', name: 'Prime Location', iconKey: 'MapPin', description: 'Near colleges & main road', category: 'lifestyle', sortOrder: 6, active: true },
+  { id: 'am-8', name: 'Peaceful Environment', iconKey: 'MoonStar', description: 'Study-friendly, low-noise zone', category: 'lifestyle', sortOrder: 7, active: true },
+];
+
+const MOCK_NEARBY: ReadonlyArray<NearbyPlace> = [
+  { id: 'np-1', name: 'Durgapur Medical College', iconKey: 'Stethoscope', category: 'medical', distanceKm: 1.2, walkingMinutes: 15, active: true },
+  { id: 'np-2', name: 'Engineering College', iconKey: 'GraduationCap', category: 'education', distanceKm: 2.0, walkingMinutes: 25, active: true },
+  { id: 'np-3', name: 'Bus Stand', iconKey: 'BusFront', category: 'transport', distanceKm: 1.5, walkingMinutes: 18, active: true },
+  { id: 'np-4', name: 'Market', iconKey: 'Store', category: 'market', distanceKm: 0.5, walkingMinutes: 6, active: true },
+  { id: 'np-5', name: 'ATM', iconKey: 'Landmark', category: 'other', distanceKm: 0.3, walkingMinutes: 4, active: true },
+  { id: 'np-6', name: 'Pharmacy', iconKey: 'Pill', category: 'medical', distanceKm: 0.4, walkingMinutes: 5, active: true },
+];
+
+const MOCK_LOCATION: LocationData = {
+  id: 'loc-main',
+  addressLine1: 'Fuljhore,',
+  addressLine2: 'Opp. Engineering College More',
+  city: 'Durgapur',
+  state: 'West Bengal',
+  postalCode: '713209',
+  country: 'India',
+  latitude: 23.5204,
+  longitude: 87.3119,
+  googleMapsEmbedUrl:
+    'https://www.google.com/maps?q=23.5204,87.3119&output=embed&z=15',
+  mapLink: 'https://maps.google.com/?q=23.5204,87.3119',
+  nearbyPlaces: MOCK_NEARBY,
+  heading: 'Prime Location',
+  subheading:
+    'Nestled in the heart of Durgapur — minutes from colleges, markets, and everything you need.',
+};
+
+// ------------------------------ Phase 2 Mock Classes ------------------------------
+
+class MockVirtualTourService implements IVirtualTourService {
+  async getVirtualTour(): Promise<ServiceResult<VirtualTourData>> {
+    await delay(55);
+    return { success: true, data: MOCK_VIRTUAL_TOUR };
+  }
+}
+
+class MockWhyChooseUsService implements IWhyChooseUsService {
+  async getWhyChooseUs(): Promise<ServiceResult<WhyChooseUsData>> {
+    await delay(50);
+    return { success: true, data: MOCK_WHY_CHOOSE };
+  }
+}
+
+class MockAmenitiesService implements IAmenitiesService {
+  async getAmenities(
+    activeOnly = true,
+    limit = 50,
+  ): Promise<ServiceResult<ReadonlyArray<Amenity>>> {
+    await delay(45);
+    const items = activeOnly ? MOCK_AMENITIES.filter((a) => a.active) : MOCK_AMENITIES;
+    const sorted = [...items].sort((a, b) => a.sortOrder - b.sortOrder);
+    return { success: true, data: sorted.slice(0, limit), meta: { total: sorted.length } };
+  }
+}
+
+class MockLocationService implements ILocationService {
+  async getLocation(): Promise<ServiceResult<LocationData>> {
+    await delay(55);
+    return { success: true, data: MOCK_LOCATION };
+  }
+}
+
 // ------------------------------ Public Factory ------------------------------
 
 export const heroService: IHeroService = new MockHeroService();
 export const galleryService: IGalleryService = new MockGalleryService();
 export const roomsService: IRoomsService = new MockRoomsService();
+export const virtualTourService: IVirtualTourService = new MockVirtualTourService();
+export const whyChooseUsService: IWhyChooseUsService = new MockWhyChooseUsService();
+export const amenitiesService: IAmenitiesService = new MockAmenitiesService();
+export const locationService: ILocationService = new MockLocationService();

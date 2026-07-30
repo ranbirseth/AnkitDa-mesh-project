@@ -237,3 +237,152 @@ export interface ListResponse<T> {
   readonly items: ReadonlyArray<T>;
   readonly total: number;
 }
+
+// ================================================================
+// Phase 2 — Virtual Tour
+// ================================================================
+
+export interface VirtualTourData extends WithId {
+  readonly enabled: boolean;
+  readonly title: string;
+  readonly description: string;
+  readonly videoUrl?: string;
+  readonly posterUrl: string;
+  readonly posterAlt: string;
+  readonly posterWidth?: number;
+  readonly posterHeight?: number;
+  readonly ctaText: string;
+  readonly ctaHref: string;
+  readonly supportingText?: string;
+  readonly panorama?: boolean;
+}
+
+export const VirtualTourDataSchema = z.object({
+  id: z.string().min(1),
+  enabled: z.boolean().default(true),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  videoUrl: z.string().url().optional(),
+  posterUrl: z.string().url(),
+  posterAlt: z.string().min(1),
+  posterWidth: z.number().positive().optional(),
+  posterHeight: z.number().positive().optional(),
+  ctaText: z.string().min(1),
+  ctaHref: z.string().min(1),
+  supportingText: z.string().optional(),
+  panorama: z.boolean().optional(),
+});
+
+// ================================================================
+// Phase 2 — Why Choose Us
+// ================================================================
+
+export interface WhyChooseUsFeature extends WithId {
+  readonly iconKey: string;
+  readonly title: string;
+  readonly description: string;
+  readonly sortOrder: number;
+  readonly active: boolean;
+}
+
+export interface WhyChooseUsData extends WithId {
+  readonly heading: string;
+  readonly subheading?: string;
+  readonly features: ReadonlyArray<WhyChooseUsFeature>;
+}
+
+export const WhyChooseUsFeatureSchema = z.object({
+  id: z.string().min(1),
+  iconKey: z.string().min(1),
+  title: z.string().min(1),
+  description: z.string().min(1),
+  sortOrder: z.number().int().nonnegative(),
+  active: z.boolean().default(true),
+});
+
+export const WhyChooseUsDataSchema = z.object({
+  id: z.string().min(1),
+  heading: z.string().min(1),
+  subheading: z.string().optional(),
+  features: z.array(WhyChooseUsFeatureSchema),
+});
+
+// ================================================================
+// Phase 2 — Amenities
+// ================================================================
+
+export interface Amenity extends WithId {
+  readonly name: string;
+  readonly iconKey: string;
+  readonly description?: string;
+  readonly category: 'standard' | 'premium' | 'security' | 'lifestyle';
+  readonly sortOrder: number;
+  readonly active: boolean;
+}
+
+export const AmenitySchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  iconKey: z.string().min(1),
+  description: z.string().optional(),
+  category: z.enum(['standard', 'premium', 'security', 'lifestyle']),
+  sortOrder: z.number().int().nonnegative(),
+  active: z.boolean().default(true),
+});
+
+// ================================================================
+// Phase 2 — Location / Nearby Places
+// ================================================================
+
+export interface NearbyPlace extends WithId {
+  readonly name: string;
+  readonly iconKey: string;
+  readonly category: 'education' | 'transport' | 'medical' | 'market' | 'other';
+  readonly distanceKm: number;
+  readonly walkingMinutes: number;
+  readonly active: boolean;
+}
+
+export interface LocationData extends WithId {
+  readonly addressLine1: string;
+  readonly addressLine2?: string;
+  readonly city: string;
+  readonly state: string;
+  readonly postalCode: string;
+  readonly country: string;
+  readonly latitude: number;
+  readonly longitude: number;
+  readonly googleMapsEmbedUrl?: string;
+  readonly mapLink: string;
+  readonly nearbyPlaces: ReadonlyArray<NearbyPlace>;
+  readonly heading?: string;
+  readonly subheading?: string;
+}
+
+export const NearbyPlaceSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  iconKey: z.string().min(1),
+  category: z.enum(['education', 'transport', 'medical', 'market', 'other']),
+  distanceKm: z.number().nonnegative(),
+  walkingMinutes: z.number().int().nonnegative(),
+  active: z.boolean().default(true),
+});
+
+export const LocationDataSchema = z.object({
+  id: z.string().min(1),
+  addressLine1: z.string().min(1),
+  addressLine2: z.string().optional(),
+  city: z.string().min(1),
+  state: z.string().min(1),
+  postalCode: z.string().min(1),
+  country: z.string().min(2),
+  latitude: z.number(),
+  longitude: z.number(),
+  googleMapsEmbedUrl: z.string().url().optional(),
+  mapLink: z.string().url(),
+  nearbyPlaces: z.array(NearbyPlaceSchema),
+  heading: z.string().optional(),
+  subheading: z.string().optional(),
+});
+

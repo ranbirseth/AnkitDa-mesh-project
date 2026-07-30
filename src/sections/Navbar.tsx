@@ -2,7 +2,15 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { Home as HomeIcon, Phone as PhoneIcon, MessageCircle as WhatsAppIcon } from 'lucide-react';
+import {
+  Home as HomeIcon,
+  Phone as PhoneIcon,
+  MessageCircle as WhatsAppIcon,
+  BedDouble as RoomsIcon,
+  Grid3X3 as GalleryIcon,
+  ListChecks as AmenitiesIcon,
+  MapPin as LocationIcon,
+} from 'lucide-react';
 import { motion, LayoutGroup } from 'framer-motion';
 import { cn } from '@/lib/cn';
 import { NAV_CTA, NAV_LINKS } from '@/constants';
@@ -23,6 +31,14 @@ import { NAV_CONTACT_PHONE, NAV_CONTACT_WHATSAPP } from '@/constants';
 
 const GLASS_THRESHOLD = 48;
 const HIDE_THRESHOLD = 320;
+
+const NAV_ICON_MAP: Readonly<Record<string, React.ComponentType<{ className?: string }>>> = {
+  home: HomeIcon,
+  rooms: RoomsIcon,
+  amenities: AmenitiesIcon,
+  gallery: GalleryIcon,
+  location: LocationIcon,
+};
 
 export function Navbar(): React.ReactElement {
   const scrollY = useScrollY();
@@ -216,6 +232,7 @@ export function Navbar(): React.ReactElement {
                   <ul className="flex flex-col gap-1">
                     {NAV_LINKS.map((link, idx) => {
                       const isActive = activeId === link.href.replace('#', '');
+                      const NavIcon = NAV_ICON_MAP[link.id] ?? HomeIcon;
                       return (
                         <motion.li
                           key={link.id}
@@ -237,7 +254,7 @@ export function Navbar(): React.ReactElement {
                             )}
                           >
                             <span>{link.label}</span>
-                            <HomeIcon className="h-4 w-4 text-gold-600" aria-hidden />
+                            <NavIcon className="h-4 w-4 text-gold-600" aria-hidden />
                           </Link>
                         </motion.li>
                       );
