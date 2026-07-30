@@ -725,16 +725,142 @@ class MockFooterService implements IFooterService {
   }
 }
 
-// ------------------------------ Public Factory ------------------------------
+// ------------------------------ Hybrid Services (DB First, Mock Fallback) ------------------------------
 
-export const heroService: IHeroService = new MockHeroService();
-export const galleryService: IGalleryService = new MockGalleryService();
-export const roomsService: IRoomsService = new MockRoomsService();
-export const virtualTourService: IVirtualTourService = new MockVirtualTourService();
-export const whyChooseUsService: IWhyChooseUsService = new MockWhyChooseUsService();
-export const amenitiesService: IAmenitiesService = new MockAmenitiesService();
-export const locationService: ILocationService = new MockLocationService();
-export const testimonialsService: ITestimonialsService = new MockTestimonialsService();
-export const contactService: IContactService = new MockContactService();
-export const ctaService: ICTAService = new MockCTAService();
-export const footerService: IFooterService = new MockFooterService();
+import * as dbActions from './actions';
+
+class HybridHeroService implements IHeroService {
+  private mock = new MockHeroService();
+  async getHero(): Promise<ServiceResult<HeroData>> {
+    try {
+      const data = await dbActions.fetchHeroFromDB();
+      if (data) return { success: true, data };
+    } catch (e) { /* ignore */ }
+    return this.mock.getHero();
+  }
+}
+
+class HybridGalleryService implements IGalleryService {
+  private mock = new MockGalleryService();
+  async getGallery(category?: GalleryCategory, limit = 50): Promise<ServiceResult<ReadonlyArray<GalleryItem>>> {
+    try {
+      const result = await dbActions.fetchGalleryFromDB(category, limit);
+      if (result) return { success: true, data: result.data, meta: { total: result.total } };
+    } catch (e) { /* ignore */ }
+    return this.mock.getGallery(category, limit);
+  }
+}
+
+class HybridRoomsService implements IRoomsService {
+  private mock = new MockRoomsService();
+  async getRooms(featuredOnly = false, limit = 12): Promise<ServiceResult<ReadonlyArray<Room>>> {
+    try {
+      const result = await dbActions.fetchRoomsFromDB(featuredOnly, limit);
+      if (result) return { success: true, data: result.data, meta: { total: result.total } };
+    } catch (e) { /* ignore */ }
+    return this.mock.getRooms(featuredOnly, limit);
+  }
+}
+
+class HybridVirtualTourService implements IVirtualTourService {
+  private mock = new MockVirtualTourService();
+  async getVirtualTour(): Promise<ServiceResult<VirtualTourData>> {
+    try {
+      const data = await dbActions.fetchVirtualTourFromDB();
+      if (data) return { success: true, data };
+    } catch (e) { /* ignore */ }
+    return this.mock.getVirtualTour();
+  }
+}
+
+class HybridWhyChooseUsService implements IWhyChooseUsService {
+  private mock = new MockWhyChooseUsService();
+  async getWhyChooseUs(): Promise<ServiceResult<WhyChooseUsData>> {
+    try {
+      const data = await dbActions.fetchWhyChooseUsFromDB();
+      if (data) return { success: true, data };
+    } catch (e) { /* ignore */ }
+    return this.mock.getWhyChooseUs();
+  }
+}
+
+class HybridAmenitiesService implements IAmenitiesService {
+  private mock = new MockAmenitiesService();
+  async getAmenities(activeOnly = true, limit = 50): Promise<ServiceResult<ReadonlyArray<Amenity>>> {
+    try {
+      const result = await dbActions.fetchAmenitiesFromDB(activeOnly, limit);
+      if (result) return { success: true, data: result.data, meta: { total: result.total } };
+    } catch (e) { /* ignore */ }
+    return this.mock.getAmenities(activeOnly, limit);
+  }
+}
+
+class HybridLocationService implements ILocationService {
+  private mock = new MockLocationService();
+  async getLocation(): Promise<ServiceResult<LocationData>> {
+    try {
+      const data = await dbActions.fetchLocationFromDB();
+      if (data) return { success: true, data };
+    } catch (e) { /* ignore */ }
+    return this.mock.getLocation();
+  }
+}
+
+class HybridTestimonialsService implements ITestimonialsService {
+  private mock = new MockTestimonialsService();
+  async getTestimonials(activeOnly = true, limit = 20): Promise<ServiceResult<TestimonialsData>> {
+    try {
+      const result = await dbActions.fetchTestimonialsFromDB(activeOnly, limit);
+      if (result) return { success: true, data: result.data as TestimonialsData, meta: { total: result.total } };
+    } catch (e) { /* ignore */ }
+    return this.mock.getTestimonials(activeOnly, limit);
+  }
+}
+
+class HybridContactService implements IContactService {
+  private mock = new MockContactService();
+  async getContactInfo(): Promise<ServiceResult<ContactInfoData>> {
+    try {
+      const data = await dbActions.fetchContactInfoFromDB();
+      if (data) return { success: true, data };
+    } catch (e) { /* ignore */ }
+    return this.mock.getContactInfo();
+  }
+  async submitContact(submission: ContactSubmissionOutput): Promise<ServiceResult<{ submissionId: string }>> {
+    return this.mock.submitContact(submission);
+  }
+}
+
+class HybridCTAService implements ICTAService {
+  private mock = new MockCTAService();
+  async getCTA(): Promise<ServiceResult<CTAData>> {
+    try {
+      const data = await dbActions.fetchCTAFromDB();
+      if (data) return { success: true, data };
+    } catch (e) { /* ignore */ }
+    return this.mock.getCTA();
+  }
+}
+
+class HybridFooterService implements IFooterService {
+  private mock = new MockFooterService();
+  async getFooter(): Promise<ServiceResult<FooterData>> {
+    try {
+      const data = await dbActions.fetchFooterFromDB();
+      if (data) return { success: true, data };
+    } catch (e) { /* ignore */ }
+    return this.mock.getFooter();
+  }
+}
+
+export const heroService: IHeroService = new HybridHeroService();
+export const galleryService: IGalleryService = new HybridGalleryService();
+export const roomsService: IRoomsService = new HybridRoomsService();
+export const virtualTourService: IVirtualTourService = new HybridVirtualTourService();
+export const whyChooseUsService: IWhyChooseUsService = new HybridWhyChooseUsService();
+export const amenitiesService: IAmenitiesService = new HybridAmenitiesService();
+export const locationService: ILocationService = new HybridLocationService();
+export const testimonialsService: ITestimonialsService = new HybridTestimonialsService();
+export const contactService: IContactService = new HybridContactService();
+export const ctaService: ICTAService = new HybridCTAService();
+export const footerService: IFooterService = new HybridFooterService();

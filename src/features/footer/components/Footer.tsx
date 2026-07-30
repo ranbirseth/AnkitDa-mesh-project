@@ -63,8 +63,8 @@ export function Footer(): React.ReactElement {
         {loading ? (
           <FooterSkeleton />
         ) : data ? (
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.05} className="md:col-span-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8">
+            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.05} className="sm:col-span-2 md:col-span-4">
               <div className="flex flex-col gap-4 max-w-sm">
                 <div className="flex items-center gap-3">
                   <span
@@ -167,7 +167,7 @@ export function Footer(): React.ReactElement {
 
       <div className="border-t border-cream-100/5">
         <Container maxWidth="wide" className="pt-6 pb-10">
-          <p className="text-center text-cream-200/50 text-xs">
+          <p className="text-center text-cream-200/50 text-xs sm:text-left">
             {data ? (
               <>
                 {data.copyrightPrefix.replace(/\u00A9\s*\d{4}/, `\u00A9 ${year}`)}
@@ -192,8 +192,8 @@ function formatMapLink(address: string): string {
 
 function FooterSkeleton(): React.ReactElement {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-      <div className="md:col-span-4 flex flex-col gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8">
+      <div className="sm:col-span-2 md:col-span-4 flex flex-col gap-4">
         <div className="flex items-center gap-3">
           <Skeleton className="h-10 w-10 rounded-full bg-cream-100/10" />
           <div className="flex flex-col gap-2">

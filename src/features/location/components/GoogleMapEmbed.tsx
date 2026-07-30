@@ -25,7 +25,7 @@ export function GoogleMapEmbed({
   return (
     <div
       className={cn(
-        'aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-2xl overflow-hidden bg-cream-100 shadow-soft border border-cream-200 relative',
+        'aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden bg-cream-100 shadow-soft border border-cream-200 relative',
         className,
       )}
     >

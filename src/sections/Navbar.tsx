@@ -111,7 +111,7 @@ export function Navbar(): React.ReactElement {
         ease: [0.22, 1, 0.36, 1],
       }}
       className={cn(
-        'fixed inset-x-0 top-0 z-[80] transition-[padding,background-color,backdrop-filter,border-color,box-shadow] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        'fixed inset-x-0 top-0 z-[80] transition-[padding,background-color,backdrop-filter,border-color,box-shadow] duration-300 ease-out-expo',
       )}
       style={{
         WebkitBackdropFilter: scrolled ? 'saturate(1.5) blur(16px)' : 'blur(0px)',

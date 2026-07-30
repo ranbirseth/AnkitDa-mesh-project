@@ -120,17 +120,17 @@ export function VideoPlayer({
           <span
             aria-hidden
             className={cn(
-              'rounded-full w-20 h-20 md:w-24 md:h-24 backdrop-blur-xl ring-1 ring-white/20 flex items-center justify-center transition-all duration-200 ease-out-expo',
+              'rounded-full w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 backdrop-blur-xl ring-1 ring-white/20 flex items-center justify-center transition-all duration-200 ease-out-expo',
               hasVideo && !reduced
                 ? 'bg-gold-500/80 hover:bg-gold-400 shadow-gold hover:scale-105 cursor-pointer'
                 : 'bg-forest-900/70 shadow-soft cursor-default',
             )}
           >
             {hasEnded ? (
-              <ReplayIcon className="w-9 h-9 md:w-10 md:h-10 text-cream-50" aria-hidden />
+              <ReplayIcon className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 text-cream-50" aria-hidden />
             ) : (
               <PlayButtonIcon
-                className="w-9 h-9 md:w-10 md:h-10 text-forest-950 pl-1 fill-forest-900"
+                className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 text-forest-950 pl-1 fill-forest-900"
                 aria-hidden
               />
             )}

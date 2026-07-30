@@ -117,9 +117,11 @@ export function RoomsSection(): React.ReactElement {
             }}
             slidesPerView={1}
             breakpoints={{
-              640: { slidesPerView: 1.3, spaceBetween: 20 },
+              480: { slidesPerView: 1.15, spaceBetween: 16 },
+              640: { slidesPerView: 1.5, spaceBetween: 20 },
               768: { slidesPerView: 2, spaceBetween: 22 },
-              1280: { slidesPerView: 3.5, spaceBetween: 28 },
+              1024: { slidesPerView: 2.5, spaceBetween: 24 },
+              1280: { slidesPerView: 3, spaceBetween: 28 },
               1536: { slidesPerView: 4, spaceBetween: 28 },
             }}
             className="!overflow-visible [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:!h-auto !pb-6"

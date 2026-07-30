@@ -102,14 +102,14 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(function Ima
         className={cn(
           'object-cover will-change-transform',
           radiusClass,
-          'transition-opacity duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]',
+          'transition-opacity duration-500 ease-out-expo',
           loaded || reduced ? 'opacity-100' : 'opacity-0',
           grayscaleFadeIn &&
             !reduced &&
             'transition-[filter,opacity,transform] duration-700',
           grayscaleFadeIn && !loaded ? 'grayscale scale-[1.02]' : 'grayscale-0',
           zoomOnHover &&
-            'duration-[650ms] ease-out-expo group-hover/zoom:scale-[1.08]',
+            'duration-700 ease-out-expo group-hover/zoom:scale-[1.08]',
           className,
         )}
         {...rest}

@@ -56,7 +56,7 @@ const DrawerContent = React.forwardRef<
         className={cn(
           'fixed z-[91] flex flex-col border border-forest-900/8 bg-cream-50 shadow-card-hover',
           side === 'bottom' ? 'rounded-t-3xl' : side === 'top' ? 'rounded-b-3xl' : 'rounded-l-2xl',
-          'duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] data-[state=open]:animate-in data-[state=closed]:animate-out',
+          'duration-300 ease-out-expo data-[state=open]:animate-in data-[state=closed]:animate-out',
           ENTRY_CLASS[side],
           className,
         )}

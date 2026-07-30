@@ -50,7 +50,7 @@ export function TestimonialCarousel({
           aria-label="Previous testimonial"
           className={cn(
             'testimonials-prev',
-            'absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-10',
+            'absolute left-0 top-1/2 -translate-y-1/2 z-10',
           )}
         >
           <ChevronLeftIcon className="h-5 w-5" />
@@ -63,7 +63,7 @@ export function TestimonialCarousel({
           aria-label="Next testimonial"
           className={cn(
             'testimonials-next',
-            'absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10',
+            'absolute right-0 top-1/2 -translate-y-1/2 z-10',
           )}
         >
           <ChevronRightIcon className="h-5 w-5" />
@@ -110,7 +110,7 @@ export function TestimonialCarousel({
           prevSlideMessage: 'Previous testimonial',
           nextSlideMessage: 'Next testimonial',
         }}
-        className="!overflow-visible [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:!h-auto !pb-14 md:!px-8"
+        className="!overflow-visible [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:!h-auto !pb-14 md:px-10"
         onBeforeInit={(swiper) => {
           if (swiper.params.navigation && typeof swiper.params.navigation === 'object') {
             swiper.params.navigation.prevEl = prevRef.current;

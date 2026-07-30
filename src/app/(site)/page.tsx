@@ -41,31 +41,27 @@ export default function HomePage(): React.ReactElement {
       <section
         aria-label="Ankit Da Mess features and location"
         id="phase-2"
-        className="relative w-full bg-gradient-to-b from-cream-50 via-cream-100/40 to-cream-50 py-14 md:py-20 lg:py-24 scroll-mt-28"
+        className="relative w-full bg-gradient-to-b from-cream-50 via-cream-100/40 to-cream-50 py-12 md:py-20 lg:py-24 scroll-mt-28"
       >
         <Container maxWidth="wide">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8">
-            {/* Mobile order #1 — Virtual Tour  (starts on top)
-                Desktop order #2 — right sidebar top  */}
-            <div className="order-1 lg:order-2 lg:col-span-5 xl:col-span-4 xl:col-start-9 w-full h-auto">
+            {/* Mobile order #1 — Virtual Tour | Desktop: right sidebar top */}
+            <div className="order-1 lg:order-2 lg:col-span-5 w-full h-auto">
               <VirtualTourSection />
             </div>
 
-            {/* Mobile order #2 — Why Choose Us
-                Desktop order #1 — left main top, takes full row-span height next to VT+AM */}
-            <div className="order-2 lg:order-1 lg:col-span-7 xl:col-span-8 xl:col-start-1 w-full">
+            {/* Mobile order #2 — Why Choose Us | Desktop: left main top */}
+            <div className="order-2 lg:order-1 lg:col-span-7 lg:row-start-1 w-full">
               <WhyChooseUsSection />
             </div>
 
-            {/* Mobile order #3 — Amenities
-                Desktop order #3 — right sidebar bottom, below Virtual Tour */}
-            <div className="order-3 lg:order-3 lg:col-span-5 xl:col-span-4 xl:col-start-9 w-full">
+            {/* Mobile order #3 — Amenities | Desktop: right sidebar bottom */}
+            <div className="order-3 lg:col-span-5 w-full">
               <AmenitiesSection />
             </div>
 
-            {/* Mobile order #4 — Prime Location
-                Desktop order #4 — left main bottom, below Why Choose Us */}
-            <div className="order-4 lg:order-4 lg:col-span-7 xl:col-span-8 xl:col-start-1 w-full">
+            {/* Mobile order #4 — Prime Location | Desktop: left main bottom */}
+            <div className="order-4 lg:col-span-7 w-full">
               <LocationSection />
             </div>
           </div>
@@ -83,30 +79,27 @@ export default function HomePage(): React.ReactElement {
       <section
         aria-label="Rooms pricing, resident reviews and contact"
         id="phase-3"
-        className="relative w-full bg-gradient-to-b from-cream-50 via-cream-100/50 to-cream-50 py-14 md:py-20 lg:py-24 scroll-mt-28"
+        className="relative w-full bg-gradient-to-b from-cream-50 via-cream-100/50 to-cream-50 py-12 md:py-20 lg:py-24 scroll-mt-28"
       >
         <Container maxWidth="wide">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8">
-            {/* Mobile #1 — Rooms & Pricing → appears first on small screens
-                Desktop #2 — right sidebar top */}
+            {/* Mobile #1 — Rooms & Pricing | Desktop: right sidebar top */}
             <div
               id="pricing"
-              className="order-1 lg:order-2 lg:col-span-5 xl:col-span-4 xl:col-start-9 w-full scroll-mt-28"
+              className="order-1 lg:order-2 lg:col-span-5 w-full scroll-mt-28"
             >
               <PricingSection />
             </div>
 
-            {/* Mobile #2 — Testimonials (main column content)
-                Desktop #1 — left main col 60–65% single stack area */}
-            <div className="order-2 lg:order-1 lg:col-span-7 xl:col-span-8 xl:col-start-1 w-full space-y-5 sm:space-y-6 lg:space-y-8">
+            {/* Mobile #2 — Testimonials | Desktop: left main */}
+            <div className="order-2 lg:order-1 lg:col-span-7 lg:row-start-1 w-full space-y-5 sm:space-y-6 lg:space-y-8">
               <TestimonialsSection />
             </div>
 
-            {/* Mobile #3 — Contact Us → appears below testimonials on small screens
-                Desktop #3 — right sidebar bottom, below Pricing (sidebar continues below top item via lg row auto flow, but we put it below testimonials on large screens since right sidebar should hold 2 items) */}
+            {/* Mobile #3 — Contact | Desktop: right sidebar bottom */}
             <div
               id="contact-col"
-              className="order-3 lg:order-3 lg:col-span-5 xl:col-span-4 xl:col-start-9 w-full"
+              className="order-3 lg:col-span-5 w-full"
             >
               <ContactSection />
             </div>

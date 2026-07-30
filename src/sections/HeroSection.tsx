@@ -51,7 +51,7 @@ export function HeroSection(): React.ReactElement {
       <FloatingParticles reduced={reduced} />
 
       {/* Foreground content */}
-      <div className="relative z-10 min-h-[100svh] flex flex-col justify-end pb-16 sm:pb-20 md:pb-24 lg:pb-28 pt-32 sm:pt-40 md:pt-48">
+      <div className="relative z-10 min-h-[100svh] flex flex-col justify-end pb-16 sm:pb-20 md:pb-24 lg:pb-28 pt-24 sm:pt-32 md:pt-40">
         <div className="container-page grid w-full grid-cols-1 items-end gap-10 lg:grid-cols-12">
           <motion.div
             className="relative z-10 flex flex-col gap-6 lg:col-span-8"
@@ -315,7 +315,7 @@ function AmenitiesStrip({ chips }: { readonly chips: ReadonlyArray<HeroAmenityCh
       <div className="glass-forest rounded-2xl border border-white/10 p-3 sm:p-4">
         <ul
           role="list"
-          className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6"
+          className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6"
         >
           {chips.map((chip) => (
             <AmenityChip key={chip.id} chip={chip} />
@@ -453,7 +453,7 @@ function ScrollIndicator(): React.ReactElement {
           className="block h-2 w-1 rounded-full bg-gold-400 shadow-[0_0_10px_rgba(217,174,55,0.7)]"
         />
       </span>
-      <span className="hidden sm:inline">Scroll</span>
+      <span>Scroll</span>
       <LucideIcons.ChevronDown
         aria-hidden
         className="h-4 w-4 animate-bob-vertical text-gold-300"

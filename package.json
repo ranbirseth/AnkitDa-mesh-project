@@ -20,10 +20,13 @@
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.7",
     "@studio-freight/lenis": "^1.0.42",
+    "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.10.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.0.0",
     "gsap": "^3.12.7",
+    "jose": "^6.2.5",
     "lucide-react": "^0.469.0",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.5",
@@ -41,6 +44,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^22.13.1",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",

@@ -56,11 +56,11 @@ export function CTASection(): React.ReactElement {
           <div
             className={cn(
               'relative rounded-3xl overflow-hidden bg-cream-50',
-              'flex flex-col md:flex-row items-center justify-between',
-              'px-6 py-10 md:px-10 md:py-14',
+              'flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-6',
+              'px-6 py-10 sm:px-8 md:px-10 md:py-14',
             )}
           >
-            <div className="flex flex-col items-start w-full md:max-w-xl mb-8 md:mb-0">
+            <div className="flex flex-col items-start w-full md:max-w-lg mb-0">
               <Reveal variant="fadeUp" delay={reduced ? 0 : 0.05}>
                 <div className="mb-3">
                   <span className="inline-flex items-center gap-2 text-eyebrow uppercase text-gold-600">
@@ -86,7 +86,7 @@ export function CTASection(): React.ReactElement {
             </div>
 
             <Reveal variant="fadeUp" delay={reduced ? 0 : 0.2}>
-              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+              <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto md:w-auto flex-shrink-0">
                 <Button
                   asChild
                   variant="gold"
@@ -154,16 +154,16 @@ function CTASkeleton(): React.ReactElement {
     <div
       className={cn(
         'relative rounded-3xl overflow-hidden bg-cream-50',
-        'flex flex-col md:flex-row items-center justify-between',
-        'px-6 py-10 md:px-10 md:py-14',
+        'flex flex-col md:flex-row items-start md:items-center justify-between gap-8 md:gap-6',
+        'px-6 py-10 sm:px-8 md:px-10 md:py-14',
       )}
     >
-      <div className="flex flex-col items-start w-full md:max-w-xl mb-8 md:mb-0 gap-4">
+      <div className="flex flex-col items-start w-full md:max-w-lg gap-4">
         <Skeleton className="h-5 w-44 rounded-full bg-forest-900/8" />
         <Skeleton className="h-10 md:h-14 w-[460px] max-w-full rounded-2xl bg-forest-900/8" />
         <Skeleton className="h-16 w-full max-w-xl rounded-xl bg-forest-900/8" />
       </div>
-      <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+      <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto md:w-auto flex-shrink-0">
         <Skeleton className="h-12 w-full sm:w-44 rounded-full bg-forest-900/8" />
         <Skeleton className="h-12 w-full sm:w-44 rounded-full bg-forest-900/8" />
         <Skeleton className="h-12 w-full sm:w-40 rounded-full bg-forest-900/8" />

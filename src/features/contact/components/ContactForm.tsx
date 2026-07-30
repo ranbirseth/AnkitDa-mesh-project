@@ -121,7 +121,7 @@ export function ContactForm({ contactInfo, className }: ContactFormProps): React
         className,
       )}
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 min-[480px]:grid-cols-2 gap-4">
         <div className="flex flex-col">
           <label htmlFor="contact-name" className={labelBase}>
             Name

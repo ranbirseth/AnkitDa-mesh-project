@@ -88,8 +88,8 @@ export function WhyChooseUsSection(): React.ReactElement {
               {activeFeatures.length > 0 ? (
                 <div
                   className={cn(
-                    'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4',
-                    'gap-4 lg:gap-5 w-full',
+                    'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4',
+                    'gap-4 xl:gap-5 w-full',
                   )}
                 >
                   {activeFeatures.map((feature, idx) => (
@@ -135,7 +135,7 @@ function WhyChooseUsSkeleton(): React.ReactElement {
       <Skeleton className="h-10 md:h-14 w-[460px] max-w-full rounded-2xl bg-cream-100/10" />
       <Skeleton className="h-1 w-14 rounded-full bg-gold-500/50" />
       <Skeleton className="h-16 w-full max-w-2xl rounded-xl bg-cream-100/10" />
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 xl:gap-5 w-full">
         {Array.from({ length: 4 }).map((_, i) => (
           <div
             key={i}

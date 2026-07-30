@@ -34,7 +34,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: [
-      'framer-motion',
       'lucide-react',
       'react-icons',
       'swiper',
@@ -43,6 +42,10 @@ const nextConfig: NextConfig = {
       '@radix-ui/react-dropdown-menu',
     ],
     webVitalsAttribution: ['CLS', 'LCP', 'INP'],
+  },
+  webpack(config) {
+    config.ignoreWarnings = [/Failed to parse source map/];
+    return config;
   },
   async headers() {
     return [

@@ -64,7 +64,7 @@ export function AmenitiesSection(): React.ReactElement {
           delay={0.1}
           className="w-full"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-2.5 sm:gap-3">
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
             {displayAmenities.map((amenity) => (
               <Reveal key={amenity.id} variant="fadeUp">
                 <AmenityCard amenity={amenity} />
@@ -79,7 +79,7 @@ export function AmenitiesSection(): React.ReactElement {
 
 function AmenitiesSkeletonGrid(): React.ReactElement {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-2.5 sm:gap-3">
+    <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}

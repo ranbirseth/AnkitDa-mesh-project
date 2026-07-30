@@ -63,7 +63,7 @@ export function SectionWrapper({
           <Reveal
             variant="fadeUp"
             className={cn(
-              'mb-10 md:mb-14 lg:mb-18 flex flex-col gap-3',
+              'mb-10 md:mb-14 lg:mb-20 flex flex-col gap-3',
               align === 'center' && 'items-center text-center',
               headerClassName,
             )}
