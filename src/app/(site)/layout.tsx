@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Navbar } from '@/sections/Navbar';
-import { FooterPlaceholder } from '@/sections/FooterPlaceholder';
+import { Footer } from '@/features/footer/components/Footer';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata: Metadata = buildMetadata({
@@ -20,7 +20,7 @@ export default function SiteLayout({
       <main id="main" tabIndex={-1} className="relative isolate">
         {children}
       </main>
-      <FooterPlaceholder />
+      <Footer />
     </>
   );
 }

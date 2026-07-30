@@ -1,0 +1,9 @@
+{
+  "name": "Ankit Da Mess",
+  "short_name": "Ankit Da Mess",
+  "description": "Premium PG & Guest House in Durgapur",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FDF9F0",
+  "theme_color": "#0B2B13"
+}

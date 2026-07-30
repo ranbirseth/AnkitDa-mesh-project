@@ -10,6 +10,8 @@ import {
   Grid3X3 as GalleryIcon,
   ListChecks as AmenitiesIcon,
   MapPin as LocationIcon,
+  Star as TestimonialsIcon,
+  Mail as ContactIcon,
 } from 'lucide-react';
 import { motion, LayoutGroup } from 'framer-motion';
 import { cn } from '@/lib/cn';
@@ -38,6 +40,8 @@ const NAV_ICON_MAP: Readonly<Record<string, React.ComponentType<{ className?: st
   amenities: AmenitiesIcon,
   gallery: GalleryIcon,
   location: LocationIcon,
+  pricing: TestimonialsIcon,
+  contact: ContactIcon,
 };
 
 export function Navbar(): React.ReactElement {

@@ -386,3 +386,276 @@ export const LocationDataSchema = z.object({
   subheading: z.string().optional(),
 });
 
+// ================================================================
+// Phase 3 — Testimonials
+// ================================================================
+
+export type TestimonialSource = 'direct' | 'google' | 'booking' | 'word-of-mouth';
+
+export interface Testimonial extends WithId {
+  readonly reviewerName: string;
+  readonly reviewerRole: string;
+  readonly reviewerInitials?: string;
+  readonly avatarUrl?: string;
+  readonly rating: number;
+  readonly content: string;
+  readonly source?: TestimonialSource;
+  readonly createdAt?: string;
+  readonly active?: boolean;
+  readonly sortOrder?: number;
+}
+
+export interface TestimonialsData extends WithId {
+  readonly heading: string;
+  readonly eyebrow?: string;
+  readonly subheading?: string;
+  readonly items: ReadonlyArray<Testimonial>;
+}
+
+export const TestimonialSchema = z.object({
+  id: z.string().min(1),
+  reviewerName: z.string().min(1),
+  reviewerRole: z.string().min(1),
+  reviewerInitials: z.string().min(1).max(4).optional(),
+  avatarUrl: z.string().url().optional(),
+  rating: z.number().int().min(1).max(5),
+  content: z.string().min(1),
+  source: z.enum(['direct', 'google', 'booking', 'word-of-mouth']).optional(),
+  createdAt: z.string().optional(),
+  active: z.boolean().default(true).optional(),
+  sortOrder: z.number().int().nonnegative().optional(),
+});
+
+export const TestimonialsDataSchema = z.object({
+  id: z.string().min(1),
+  heading: z.string().min(1),
+  eyebrow: z.string().optional(),
+  subheading: z.string().optional(),
+  items: z.array(TestimonialSchema),
+});
+
+// ================================================================
+// Phase 3 — Contact
+// ================================================================
+
+export type ContactEnquiryType =
+  | 'single-room'
+  | 'shared-room'
+  | 'balcony-room'
+  | 'premium-room'
+  | 'long-stay'
+  | 'other';
+
+export interface ContactInfoData extends WithId {
+  readonly heading: string;
+  readonly eyebrow?: string;
+  readonly subheading?: string;
+  readonly phonePrimary: string;
+  readonly phoneSecondary?: string;
+  readonly whatsapp: string;
+  readonly email: string;
+  readonly address: string;
+  readonly addressMapLink?: string;
+  readonly openHours?: string;
+  readonly enquiryTypes: ReadonlyArray<{ id: ContactEnquiryType | 'general'; label: string }>;
+}
+
+export interface ContactSubmission {
+  readonly name: string;
+  readonly phone: string;
+  readonly email?: string;
+  readonly roomType?: ContactEnquiryType | 'general';
+  readonly message?: string;
+  readonly source?: string;
+}
+
+export const ContactInfoDataSchema = z.object({
+  id: z.string().min(1),
+  heading: z.string().min(1),
+  eyebrow: z.string().optional(),
+  subheading: z.string().optional(),
+  phonePrimary: z.string().min(1),
+  phoneSecondary: z.string().optional(),
+  whatsapp: z.string().min(1),
+  email: z.string().email(),
+  address: z.string().min(1),
+  addressMapLink: z.string().url().optional(),
+  openHours: z.string().optional(),
+  enquiryTypes: z.array(
+    z.object({
+      id: z.enum([
+        'single-room',
+        'shared-room',
+        'balcony-room',
+        'premium-room',
+        'long-stay',
+        'other',
+        'general',
+      ]),
+      label: z.string().min(1),
+    }),
+  ),
+});
+
+export const ContactSubmissionSchema = z.object({
+  name: z
+    .string({ required_error: 'Name is required' })
+    .min(2, 'Name must be at least 2 characters')
+    .max(80, 'Name must be at most 80 characters')
+    .trim(),
+  phone: z
+    .string({ required_error: 'Phone number is required' })
+    .regex(
+      /^[+]?[\d\s().-]{7,20}$/,
+      'Please enter a valid phone number',
+    ),
+  email: z
+    .string()
+    .email('Please enter a valid email address')
+    .or(z.literal(''))
+    .optional(),
+  roomType: z
+    .enum([
+      'single-room',
+      'shared-room',
+      'balcony-room',
+      'premium-room',
+      'long-stay',
+      'other',
+      'general',
+    ])
+    .optional(),
+  message: z
+    .string()
+    .max(1000, 'Message must be at most 1000 characters')
+    .or(z.literal(''))
+    .optional(),
+  source: z.string().max(64).optional(),
+});
+
+export type ContactSubmissionInput = z.input<typeof ContactSubmissionSchema>;
+export type ContactSubmissionOutput = z.output<typeof ContactSubmissionSchema>;
+
+// ================================================================
+// Phase 3 — CTA
+// ================================================================
+
+export interface CTAData extends WithId {
+  readonly heading: string;
+  readonly subheading?: string;
+  readonly primaryButton: LinkCTA;
+  readonly secondaryButton: LinkCTA;
+  readonly tertiaryButton?: LinkCTA;
+  readonly eyebrow?: string;
+  readonly backgroundImageUrl?: string;
+}
+
+export const CTADataSchema = z.object({
+  id: z.string().min(1),
+  heading: z.string().min(1),
+  subheading: z.string().optional(),
+  primaryButton: z.object({
+    text: z.string().min(1),
+    href: z.string().min(1),
+    external: z.boolean().optional(),
+  }),
+  secondaryButton: z.object({
+    text: z.string().min(1),
+    href: z.string().min(1),
+    external: z.boolean().optional(),
+  }),
+  tertiaryButton: z
+    .object({
+      text: z.string().min(1),
+      href: z.string().min(1),
+      external: z.boolean().optional(),
+    })
+    .optional(),
+  eyebrow: z.string().optional(),
+  backgroundImageUrl: z.string().url().optional(),
+});
+
+// ================================================================
+// Phase 3 — Footer
+// ================================================================
+
+export interface FooterSocialLink extends WithId {
+  readonly platform: 'facebook' | 'instagram' | 'whatsapp' | 'twitter' | 'linkedin' | 'youtube';
+  readonly url: string;
+  readonly label: string;
+}
+
+export interface FooterQuickLink extends WithId {
+  readonly label: string;
+  readonly href: string;
+  readonly isAnchor?: boolean;
+  readonly sortOrder: number;
+}
+
+export interface FooterContactInfo {
+  readonly phonePrimary: string;
+  readonly phoneSecondary?: string;
+  readonly whatsapp?: string;
+  readonly email: string;
+  readonly address: string;
+}
+
+export interface FooterData extends WithId {
+  readonly brandName: string;
+  readonly brandTagline: string;
+  readonly brandDescription: string;
+  readonly brandLogoUrl?: string;
+  readonly quickLinksTitle: string;
+  readonly quickLinks: ReadonlyArray<FooterQuickLink>;
+  readonly contactTitle: string;
+  readonly contact: FooterContactInfo;
+  readonly socialLinks: ReadonlyArray<FooterSocialLink>;
+  readonly copyrightPrefix: string;
+  readonly copyrightSuffix?: string;
+}
+
+export const FooterSocialLinkSchema = z.object({
+  id: z.string().min(1),
+  platform: z.enum([
+    'facebook',
+    'instagram',
+    'whatsapp',
+    'twitter',
+    'linkedin',
+    'youtube',
+  ]),
+  url: z.string().url(),
+  label: z.string().min(1),
+});
+
+export const FooterQuickLinkSchema = z.object({
+  id: z.string().min(1),
+  label: z.string().min(1),
+  href: z.string().min(1),
+  isAnchor: z.boolean().optional(),
+  sortOrder: z.number().int().nonnegative(),
+});
+
+export const FooterContactInfoSchema = z.object({
+  phonePrimary: z.string().min(1),
+  phoneSecondary: z.string().optional(),
+  whatsapp: z.string().optional(),
+  email: z.string().email(),
+  address: z.string().min(1),
+});
+
+export const FooterDataSchema = z.object({
+  id: z.string().min(1),
+  brandName: z.string().min(1),
+  brandTagline: z.string().min(1),
+  brandDescription: z.string().min(1),
+  brandLogoUrl: z.string().url().optional(),
+  quickLinksTitle: z.string().min(1),
+  quickLinks: z.array(FooterQuickLinkSchema),
+  contactTitle: z.string().min(1),
+  contact: FooterContactInfoSchema,
+  socialLinks: z.array(FooterSocialLinkSchema),
+  copyrightPrefix: z.string().min(1),
+  copyrightSuffix: z.string().optional(),
+});
+

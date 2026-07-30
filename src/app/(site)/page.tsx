@@ -5,6 +5,10 @@ import { VirtualTourSection } from '@/features/virtual-tour/components/VirtualTo
 import { WhyChooseUsSection } from '@/features/why-choose-us/components/WhyChooseUsSection';
 import { AmenitiesSection } from '@/features/amenities/components/AmenitiesSection';
 import { LocationSection } from '@/features/location/components/LocationSection';
+import { PricingSection } from '@/features/pricing/components/PricingSection';
+import { TestimonialsSection } from '@/features/testimonials/components/TestimonialsSection';
+import { ContactSection } from '@/features/contact/components/ContactSection';
+import { CTASection } from '@/features/cta/components/CTASection';
 import { Container } from '@/components/Container';
 
 export default function HomePage(): React.ReactElement {
@@ -29,9 +33,9 @@ export default function HomePage(): React.ReactElement {
       </div>
 
       {/* ===== PHASE 2 — ASYMMETRIC EDITORIAL GRID ===== */}
-      {/* Desktop: 12-col → MAIN (col-span-7 / xl:col-span-8 ≈ 60–66%) stacked with
+      {/* Desktop: 12-col → MAIN (col-span-7 / xl:col-span-8 ≈ 60–66%) stacked
                     Why Choose Us → Location
-                    SIDEBAR (col-span-5 / xl:col-span-4 ≈ 34–40%) stacked with
+                    SIDEBAR (col-span-5 / xl:col-span-4 ≈ 34–40%) stacked
                     Virtual Tour → Amenities
           Mobile:  1-col with order-n → VT → WCU → AM → LOC  */}
       <section
@@ -68,8 +72,57 @@ export default function HomePage(): React.ReactElement {
         </Container>
       </section>
 
-      {/* Final soft fade that blends into FooterPlaceholder */}
-      <div aria-hidden className="h-12 w-full bg-gradient-to-b from-cream-50 to-forest-950" />
+      {/* ===== PHASE 3 — ASYMMETRIC EDITORIAL GRID (continued) ===== */}
+      {/* Desktop: 12-col → MAIN (col-span-7 / xl:col-span-8 ≈ 60–65%) Testimonials
+                    SIDEBAR (col-span-5 / xl:col-span-4 ≈ 35–40%) Pricing → Contact
+          Mobile:  single col → Pricing → Testimonials → Contact
+          Final page sequence (per spec):
+            Rooms → Virtual Tour → Why Choose Us → Amenities → Location →
+            Rooms & Pricing → Testimonials → Contact → CTA → Footer
+      */}
+      <section
+        aria-label="Rooms pricing, resident reviews and contact"
+        id="phase-3"
+        className="relative w-full bg-gradient-to-b from-cream-50 via-cream-100/50 to-cream-50 py-14 md:py-20 lg:py-24 scroll-mt-28"
+      >
+        <Container maxWidth="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8">
+            {/* Mobile #1 — Rooms & Pricing → appears first on small screens
+                Desktop #2 — right sidebar top */}
+            <div
+              id="pricing"
+              className="order-1 lg:order-2 lg:col-span-5 xl:col-span-4 xl:col-start-9 w-full scroll-mt-28"
+            >
+              <PricingSection />
+            </div>
+
+            {/* Mobile #2 — Testimonials (main column content)
+                Desktop #1 — left main col 60–65% single stack area */}
+            <div className="order-2 lg:order-1 lg:col-span-7 xl:col-span-8 xl:col-start-1 w-full space-y-5 sm:space-y-6 lg:space-y-8">
+              <TestimonialsSection />
+            </div>
+
+            {/* Mobile #3 — Contact Us → appears below testimonials on small screens
+                Desktop #3 — right sidebar bottom, below Pricing (sidebar continues below top item via lg row auto flow, but we put it below testimonials on large screens since right sidebar should hold 2 items) */}
+            <div
+              id="contact-col"
+              className="order-3 lg:order-3 lg:col-span-5 xl:col-span-4 xl:col-start-9 w-full"
+            >
+              <ContactSection />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* ===== PHASE 3 — FULL-WIDTH CTA ===== */}
+      <div className="relative w-full bg-gradient-to-b from-cream-50 to-cream-100/70 pb-16 md:pb-20 lg:pb-24">
+        <Container maxWidth="wide">
+          <CTASection />
+        </Container>
+      </div>
+
+      {/* Final soft fade that blends into Footer (in layout) */}
+      <div aria-hidden className="h-12 w-full bg-gradient-to-b from-cream-100/70 via-forest-950/60 to-forest-950" />
     </>
   );
 }

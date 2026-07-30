@@ -10,12 +10,14 @@ export const NAV_LINKS: ReadonlyArray<NavLinkItem> = [
   { id: 'amenities', label: 'Amenities', href: '#amenities', isAnchor: true },
   { id: 'gallery', label: 'Gallery', href: '#gallery', isAnchor: true },
   { id: 'location', label: 'Location', href: '#location', isAnchor: true },
+  { id: 'pricing', label: 'Reviews', href: '#testimonials', isAnchor: true },
+  { id: 'contact', label: 'Contact', href: '#contact', isAnchor: true },
 ] as const;
 
 export const NAV_CTA: NavLinkItem = {
   id: 'enquire-cta',
   label: 'Enquire Now',
-  href: '#rooms',
+  href: '#contact',
   isAnchor: true,
 } as const;
 
@@ -54,6 +56,10 @@ export const SECTION_IDS = {
   'why-choose-us': 'why-choose-us',
   amenities: 'amenities',
   location: 'location',
+  pricing: 'pricing',
+  testimonials: 'testimonials',
+  contact: 'contact',
+  cta: 'cta',
 } as const;
 
 // ================================================================

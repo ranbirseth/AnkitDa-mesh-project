@@ -14,6 +14,12 @@ import type {
   Amenity,
   LocationData,
   NearbyPlace,
+  TestimonialsData,
+  Testimonial,
+  ContactInfoData,
+  ContactSubmissionOutput,
+  CTAData,
+  FooterData,
 } from '@/types';
 import { HERO_AMENITY_CHIPS } from '@/constants';
 
@@ -44,6 +50,21 @@ export interface IAmenitiesService {
 }
 export interface ILocationService {
   getLocation(): Promise<ServiceResult<LocationData>>;
+}
+export interface ITestimonialsService {
+  getTestimonials(activeOnly?: boolean, limit?: number): Promise<ServiceResult<TestimonialsData>>;
+}
+export interface IContactService {
+  getContactInfo(): Promise<ServiceResult<ContactInfoData>>;
+  submitContact(
+    submission: ContactSubmissionOutput,
+  ): Promise<ServiceResult<{ submissionId: string }>>;
+}
+export interface ICTAService {
+  getCTA(): Promise<ServiceResult<CTAData>>;
+}
+export interface IFooterService {
+  getFooter(): Promise<ServiceResult<FooterData>>;
 }
 
 // ------------------------------ Mock Media ------------------------------
@@ -492,6 +513,218 @@ class MockLocationService implements ILocationService {
   }
 }
 
+// ------------------------------ Mock Testimonials ------------------------------
+
+const MOCK_TESTIMONIALS_ITEMS: ReadonlyArray<Testimonial> = [
+  {
+    id: 't-1',
+    reviewerName: 'Rahul',
+    reviewerRole: 'Engineering Student',
+    reviewerInitials: 'RS',
+    rating: 5,
+    content:
+      'A perfectly studied friendly environment, good food and helpful management.',
+    source: 'direct',
+    createdAt: '2026-03-01',
+    active: true,
+    sortOrder: 0,
+  },
+  {
+    id: 't-2',
+    reviewerName: 'Saurav',
+    reviewerRole: 'Working Professional',
+    reviewerInitials: 'SG',
+    rating: 5,
+    content:
+      'I am staying here for 6 months. Everything is well managed. Feels like home.',
+    source: 'direct',
+    createdAt: '2026-02-18',
+    active: true,
+    sortOrder: 1,
+  },
+  {
+    id: 't-3',
+    reviewerName: 'Amit',
+    reviewerRole: 'B.Tech Student',
+    reviewerInitials: 'AK',
+    rating: 5,
+    content:
+      'Clean rooms, hot water and 24x7 electricity. Best PG in this area.',
+    source: 'direct',
+    createdAt: '2026-01-28',
+    active: true,
+    sortOrder: 2,
+  },
+];
+
+const MOCK_TESTIMONIALS: TestimonialsData = {
+  id: 'testimonials-main',
+  heading: 'What Our Residents Say',
+  eyebrow: 'TESTIMONIALS',
+  subheading:
+    'Real stories from students and professionals who call Ankit Da Mess home.',
+  items: MOCK_TESTIMONIALS_ITEMS,
+};
+
+class MockTestimonialsService implements ITestimonialsService {
+  async getTestimonials(
+    activeOnly = true,
+    limit = 20,
+  ): Promise<ServiceResult<TestimonialsData>> {
+    await delay(40);
+    const items = [...MOCK_TESTIMONIALS.items]
+      .filter((t) => (activeOnly ? t.active !== false : true))
+      .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0))
+      .slice(0, limit);
+    return {
+      success: true,
+      data: { ...MOCK_TESTIMONIALS, items },
+      meta: { total: items.length },
+    };
+  }
+}
+
+// ------------------------------ Mock Contact ------------------------------
+
+const MOCK_CONTACT_INFO: ContactInfoData = {
+  id: 'contact-main',
+  heading: 'Get In Touch',
+  eyebrow: 'CONTACT',
+  subheading:
+    'Have a question about availability or pricing? Send us a message.',
+  phonePrimary: '+91 98234 56789',
+  phoneSecondary: '+91 98234 56790',
+  whatsapp: '+91 98234 56789',
+  email: 'ankitda.mess@gmail.com',
+  address: 'Fuljhore, Durgapur, West Bengal',
+  addressMapLink: 'https://maps.google.com/?q=Fuljhore+Durgapur+West+Bengal',
+  openHours: 'Open 24x7',
+  enquiryTypes: [
+    { id: 'single-room', label: 'Single Room' },
+    { id: 'shared-room', label: 'Shared Room' },
+    { id: 'balcony-room', label: 'Room with Balcony' },
+    { id: 'premium-room', label: 'Premium Room' },
+    { id: 'long-stay', label: 'Long Stay / Custom Plan' },
+    { id: 'general', label: 'General Enquiry' },
+  ],
+};
+
+const MOCK_CONTACT_SUBMISSIONS: Array<{
+  id: string;
+  submission: ContactSubmissionOutput;
+  createdAt: string;
+}> = [];
+
+class MockContactService implements IContactService {
+  async getContactInfo(): Promise<ServiceResult<ContactInfoData>> {
+    await delay(35);
+    return { success: true, data: MOCK_CONTACT_INFO };
+  }
+
+  async submitContact(
+    submission: ContactSubmissionOutput,
+  ): Promise<ServiceResult<{ submissionId: string }>> {
+    await delay(420);
+    const submissionId = `sub-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+    MOCK_CONTACT_SUBMISSIONS.push({
+      id: submissionId,
+      submission,
+      createdAt: new Date().toISOString(),
+    });
+    return {
+      success: true,
+      data: { submissionId },
+      meta: { queueLength: MOCK_CONTACT_SUBMISSIONS.length },
+    };
+  }
+}
+
+// ------------------------------ Mock CTA ------------------------------
+
+const MOCK_CTA: CTAData = {
+  id: 'cta-main',
+  heading: 'Ready to Book Your Room?',
+  subheading: 'Contact us today for availability and best offers!',
+  primaryButton: {
+    text: 'Call Now',
+    href: 'tel:+919823456789',
+    external: false,
+  },
+  secondaryButton: {
+    text: 'WhatsApp Us',
+    href: 'https://wa.me/919823456789?text=Hi%20Ankit%20Da%20Mess%2C%20I%27d%20like%20to%20enquire%20about%20rooms',
+    external: true,
+  },
+  tertiaryButton: {
+    text: 'Enquire Now',
+    href: '#contact',
+    external: false,
+  },
+};
+
+class MockCTAService implements ICTAService {
+  async getCTA(): Promise<ServiceResult<CTAData>> {
+    await delay(30);
+    return { success: true, data: MOCK_CTA };
+  }
+}
+
+// ------------------------------ Mock Footer ------------------------------
+
+const MOCK_FOOTER: FooterData = {
+  id: 'footer-main',
+  brandName: 'Ankit Da Mess',
+  brandTagline: 'Guest House & PG',
+  brandDescription:
+    'Providing a safe, comfortable and affordable living space for students and working professionals.',
+  quickLinksTitle: 'Quick Links',
+  quickLinks: [
+    { id: 'fl-1', label: 'Home', href: '#home', isAnchor: true, sortOrder: 0 },
+    { id: 'fl-2', label: 'Rooms', href: '#rooms', isAnchor: true, sortOrder: 1 },
+    { id: 'fl-3', label: 'Gallery', href: '#gallery', isAnchor: true, sortOrder: 2 },
+    { id: 'fl-4', label: 'Amenities', href: '#amenities', isAnchor: true, sortOrder: 3 },
+    { id: 'fl-5', label: 'Reviews', href: '#testimonials', isAnchor: true, sortOrder: 4 },
+    { id: 'fl-6', label: 'Contact', href: '#contact', isAnchor: true, sortOrder: 5 },
+  ],
+  contactTitle: 'Contact Us',
+  contact: {
+    phonePrimary: '+91 98234 56789',
+    phoneSecondary: '+91 98234 56790',
+    whatsapp: '+91 98234 56789',
+    email: 'ankitda.mess@gmail.com',
+    address: 'Fuljhore, Durgapur, West Bengal',
+  },
+  socialLinks: [
+    {
+      id: 'sl-fb',
+      platform: 'facebook',
+      url: 'https://www.facebook.com/',
+      label: 'Facebook',
+    },
+    {
+      id: 'sl-ig',
+      platform: 'instagram',
+      url: 'https://www.instagram.com/',
+      label: 'Instagram',
+    },
+    {
+      id: 'sl-wa',
+      platform: 'whatsapp',
+      url: 'https://wa.me/919823456789',
+      label: 'WhatsApp',
+    },
+  ],
+  copyrightPrefix: '\u00A9 2026 Ankit Da Mess.',
+  copyrightSuffix: 'All Rights Reserved.',
+};
+
+class MockFooterService implements IFooterService {
+  async getFooter(): Promise<ServiceResult<FooterData>> {
+    await delay(25);
+    return { success: true, data: MOCK_FOOTER };
+  }
+}
+
 // ------------------------------ Public Factory ------------------------------
 
 export const heroService: IHeroService = new MockHeroService();
@@ -501,3 +734,7 @@ export const virtualTourService: IVirtualTourService = new MockVirtualTourServic
 export const whyChooseUsService: IWhyChooseUsService = new MockWhyChooseUsService();
 export const amenitiesService: IAmenitiesService = new MockAmenitiesService();
 export const locationService: ILocationService = new MockLocationService();
+export const testimonialsService: ITestimonialsService = new MockTestimonialsService();
+export const contactService: IContactService = new MockContactService();
+export const ctaService: ICTAService = new MockCTAService();
+export const footerService: IFooterService = new MockFooterService();

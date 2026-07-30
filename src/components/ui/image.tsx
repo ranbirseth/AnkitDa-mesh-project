@@ -68,6 +68,13 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(function Ima
   const wrapStyle: React.CSSProperties | undefined =
     aspect !== 'auto' ? { aspectRatio: ASPECT_MAP[aspect] } : undefined;
 
+  const effectiveBlurDataURL =
+    rest.blurDataURL && rest.blurDataURL.startsWith('data:image/')
+      ? rest.blurDataURL
+      : undefined;
+  const effectivePlaceholder =
+    rest.placeholder ?? (effectiveBlurDataURL ? 'blur' : 'empty');
+
   return (
     <div
       className={cn(
@@ -87,13 +94,8 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(function Ima
           rest.sizes ??
           '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw'
         }
-        placeholder={rest.placeholder ?? 'blur'}
-        blurDataURL={
-          rest.blurDataURL ??
-          (typeof src === 'string'
-            ? 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8"><rect width="8" height="8" fill="%23EEDBA5"/></svg>'
-            : rest.blurDataURL)
-        }
+        placeholder={effectivePlaceholder}
+        blurDataURL={effectiveBlurDataURL}
         onLoadCapture={() => {
           if (!reduced) setLoaded(true);
         }}

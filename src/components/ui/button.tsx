@@ -22,6 +22,8 @@ const buttonVariants = cva(
           'bg-white/8 backdrop-blur-md border border-white/15 text-cream-50 hover:bg-white/14 hover:border-white/25',
         'glass-gold':
           'bg-gold-500/90 text-forest-900 backdrop-blur-md border border-gold-400/50 hover:bg-gold-400',
+        'glass-dark':
+          'bg-forest-900/60 text-cream-50 backdrop-blur-md border border-white/15 hover:bg-forest-800/70 hover:border-emerald-400/40 hover:text-emerald-300',
       },
       size: {
         sm: 'h-9 px-4 text-xs',
