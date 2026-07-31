@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -19,7 +20,7 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
   const router = useRouter();
   const [isSaving, setIsSaving] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm<RoomFormData>({
+  const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm<RoomFormData>({
     resolver: zodResolver(FormSchema),
     defaultValues: initialData || {
       currency: 'INR',
@@ -29,9 +30,16 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
       priceMonthly: 4000,
       features: [],
       gallery: [],
-      primaryImage: { id: 'temp', url: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267', alt: 'Placeholder' } // Simple fallback for now
+      primaryImage: { id: '', url: '', alt: '' },
     },
   });
+
+  const imageUrl = watch('primaryImage.url');
+  useEffect(() => {
+    if (imageUrl) {
+      setValue('primaryImage.id', imageUrl);
+    }
+  }, [imageUrl, setValue]);
 
   const onSubmit = async (data: RoomFormData) => {
     setIsSaving(true);
@@ -45,7 +53,10 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error('Failed to save room');
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || errorData.message || 'Failed to save room');
+      }
 
       toast.success(roomId ? 'Room updated successfully' : 'Room created successfully');
       router.push('/admin/rooms');
@@ -71,7 +82,7 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 bg-forest-900/50 p-6 md:p-8 rounded-xl border border-forest-800 backdrop-blur-sm">
-        
+
         {/* Basic Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -136,16 +147,36 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
           {errors.shortDescription && <p className="text-red-400 text-sm mt-1">{errors.shortDescription.message}</p>}
         </div>
 
-        {/* Note: In a real app, Media Picker and Features array would go here. For now we use the hidden default values for complex nested arrays to allow basic saving. */}
-        <div className="p-4 bg-forest-800/30 rounded-lg border border-forest-700">
-          <p className="text-sm text-forest-300">
-            * Note: Media upload and amenities selection would require a custom MediaPicker component. Default placeholders are used to satisfy validation for this demo.
-          </p>
+        {/* Primary Image */}
+        <div className="space-y-4">
+          <h3 className="text-sm font-semibold text-forest-200 uppercase tracking-wider border-b border-forest-800 pb-2">Primary Image</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-forest-200 mb-1.5">Image URL</label>
+              <input
+                {...register('primaryImage.url')}
+                className="w-full px-3 py-2 bg-forest-950 border border-forest-700 rounded-lg text-forest-50 focus:ring-2 focus:ring-gold-500/50 text-sm"
+                placeholder="https://res.cloudinary.com/..."
+              />
+              {errors.primaryImage?.url && <p className="text-red-400 text-sm mt-1">{errors.primaryImage.url.message}</p>}
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-forest-200 mb-1.5">Image Alt Text</label>
+              <input
+                {...register('primaryImage.alt')}
+                className="w-full px-3 py-2 bg-forest-950 border border-forest-700 rounded-lg text-forest-50 focus:ring-2 focus:ring-gold-500/50 text-sm"
+                placeholder="Room photo description"
+              />
+              {errors.primaryImage?.alt && <p className="text-red-400 text-sm mt-1">{errors.primaryImage.alt.message}</p>}
+            </div>
+          </div>
+          {/* Hidden id field — use URL as id if no media picker */}
+          <input type="hidden" {...register('primaryImage.id')} />
         </div>
 
         <div className="flex justify-end border-t border-forest-800 pt-6">
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={isSaving}
             className="bg-gold-500 hover:bg-gold-400 text-forest-950 font-semibold px-8"
           >

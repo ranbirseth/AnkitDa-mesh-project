@@ -27,16 +27,14 @@ export function FooterPlaceholder(): React.ReactElement {
         >
           <div className="flex flex-col gap-2 max-w-md">
             <div className="flex items-center gap-2.5">
-              <span
-                aria-hidden
-                className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gold-500 text-forest-900 shadow-gold"
-              >
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 12 12 3l9 9" />
-                  <path d="M5 10v10h14V10" />
-                  <path d="M10 20v-6h4v6" />
-                </svg>
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://res.cloudinary.com/dyc33dchn/image/upload/v1785510737/ChatGPT_Image_Jul_31_2026_08_27_37_AM_spn3au.png"
+                alt="Ankit Da Mess logo"
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-xl object-cover shadow-gold"
+              />
               <div className="flex flex-col leading-tight">
                 <span className="font-display text-lg font-bold text-cream-50">
                   Ankit <span className="text-gold-400">Da Mess</span>
@@ -83,7 +81,7 @@ export function FooterPlaceholder(): React.ReactElement {
         <div className="container-page flex flex-col gap-3 py-5 text-[0.78rem] text-cream-100/60 md:flex-row md:items-center md:justify-between">
           <p>© {year} Ankit Da Mess. All rights reserved.</p>
           <p className={cn('opacity-75')}>
-            Built with care · Designed for comfort
+            Fuljhore, Rabindra Pally, Durgapur 713206
           </p>
         </div>
       </div>

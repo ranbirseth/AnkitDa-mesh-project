@@ -19,7 +19,6 @@ import {
   Grid3X3 as GridIcon,
   SlidersHorizontal as SliderIcon,
   X as CloseIcon,
-  ChevronDown as ChevronDownIcon,
   ChevronUp as ChevronUpIcon,
   Images as ImagesIcon,
 } from 'lucide-react';

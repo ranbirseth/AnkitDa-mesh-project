@@ -74,7 +74,7 @@ export function AmenitiesSection(): React.ReactElement {
       <div className="mt-10 flex justify-center">
         <Badge variant="gold" size="lg">
           <LucideIcons.Sparkles className="h-3.5 w-3.5" />
-          Full amenities list with add-ons — Phase 2
+          All facilities included
         </Badge>
       </div>
     </SectionWrapper>
@@ -102,27 +102,27 @@ export function LocationSection(): React.ReactElement {
                 {
                   iconKey: 'MapPin',
                   title: 'Address',
-                  value: 'Ankit Da Mess, Bidhannagar, Durgapur, West Bengal 713212',
+                  value: 'Fuljhore, Rabindra Pally, Durgapur, West Bengal 713206',
                 },
                 {
                   iconKey: 'TrainFront',
                   title: 'Nearest Railway',
-                  value: 'Durgapur Junction (Station Code: DGR) — 5.2 km, 15 min auto',
+                  value: 'Durgapur Junction (Station Code: DGR) — 4.5 km, 12 min auto',
                 },
                 {
                   iconKey: 'GraduationCap',
                   title: 'Nearby Colleges',
-                  value: 'NIT Durgapur 2.1 km · BCET 1.8 km · Dr. B.C. Roy Engg. 3.4 km',
+                  value: 'Durgapur Govt. College 1.5 km · BCET 2.0 km · Engineering College More 0.8 km',
                 },
                 {
                   iconKey: 'Store',
                   title: 'Markets & Banks',
-                  value: 'Bidhannagar Market 300 m · Axis/SBI/HDFC ATMs within 500 m',
+                  value: 'Fuljhore Market 300 m · ATMs within 400 m · Medical shops nearby',
                 },
                 {
                   iconKey: 'Stethoscope',
                   title: 'Medical Care',
-                  value: 'Mission Hospital 1.4 km · Durgapur Lions 2.6 km',
+                  value: 'Durgapur Medical College 1.2 km · Local pharmacy 400 m',
                 },
               ].map((row) => {
                 const Icon =
@@ -173,8 +173,8 @@ export function LocationSection(): React.ReactElement {
           <div className="relative overflow-hidden rounded-3xl border border-forest-900/8 shadow-elevate">
             <div className="relative aspect-[16/10] w-full bg-gradient-to-br from-cream-100 via-cream-50 to-cream-200">
               <UIimage
-                src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=1600&q=80"
-                alt="Aerial view of Durgapur city with green avenues and urban infrastructure"
+                src="https://res.cloudinary.com/dyc33dchn/image/upload/v1785466473/ChatGPT_Image_Jul_31_2026_08_23_55_AM_bxyp4o.png"
+                alt="Ankit Da Mess guest house building — Fuljhore, Rabindra Pally, Durgapur"
                 aspect="16/9"
                 rounded="2xl"
                 sizes="(max-width: 1024px) 100vw, 58vw"
@@ -186,16 +186,12 @@ export function LocationSection(): React.ReactElement {
               <div className="absolute inset-x-0 bottom-0 z-10 flex items-end justify-between p-5 sm:p-6">
                 <div>
                   <Badge variant="glass-dark" size="sm">
-                    <LucideIcons.MapPin className="h-3.5 w-3.5 text-gold-300" /> Bidhannagar · Durgapur
+                    <LucideIcons.MapPin className="h-3.5 w-3.5 text-gold-300" /> Fuljhore · Durgapur 713206
                   </Badge>
                   <h3 className="mt-2 font-display text-xl sm:text-2xl text-cream-50 leading-tight">
-                    Peaceful neighbourhood, 2 min from the main road.
+                    Fuljhore, Rabindra Pally — minutes from colleges and markets.
                   </h3>
                 </div>
-                <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 px-3 py-1.5 text-[0.75rem] font-semibold text-cream-50">
-                  <span className="block h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  Google Maps view · Phase 2 embed
-                </span>
               </div>
             </div>
           </div>
@@ -211,7 +207,7 @@ const REVIEW_DATA = [
     role: 'NIT Durgapur, B.Tech 3rd Year',
     rating: 5,
     text: 'Stayed for 2 years. Rooms are spacious, food is actually home-style and the caretaker is super helpful. WiFi never dies even during exam season.',
-    avatar: 'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?auto=format&fit=crop&w=200&q=80',
+    avatar: '',
     stay: 'Single Room · 2023–25',
   },
   {
@@ -219,7 +215,7 @@ const REVIEW_DATA = [
     role: 'Software Engineer, TCS Durgapur',
     rating: 5,
     text: 'As a working woman I felt very safe here. CCTV, biometric entry, 24×7 caretaker. The terrace is my happy place after long work days.',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80',
+    avatar: '',
     stay: 'Premium Room · 2024–Present',
   },
   {
@@ -227,7 +223,7 @@ const REVIEW_DATA = [
     role: 'BCET Final Year',
     rating: 4,
     text: 'Affordable compared to other PGs nearby and way cleaner. Laundry + mess saves so much time. Only wish the gym upgrade comes sooner!',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
+    avatar: '',
     stay: 'Shared Room · 2022–24',
   },
 ] as const;
@@ -240,10 +236,10 @@ export function ReviewsSection(): React.ReactElement {
       eyebrow="What Our Residents Say"
       heading={
         <span>
-          Loved by <span className="text-gold-600">150+ Students & Professionals</span>
+          Loved by <span className="text-gold-600">Students & Professionals</span>
         </span>
       }
-      subheading="Real feedback from real residents — over 4.8/5 average rating across Google and local listings."
+      subheading="Real feedback from residents who call Ankit Da Mess home."
     >
       <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {REVIEW_DATA.map((r, i) => (
@@ -267,15 +263,24 @@ export function ReviewsSection(): React.ReactElement {
                 {r.text}
               </p>
               <div className="mt-auto flex items-center gap-3 border-t border-forest-900/6 pt-4">
-                <UIimage
-                  src={r.avatar}
-                  alt={`${r.name} — resident photo`}
-                  aspect="1/1"
-                  rounded="full"
-                  sizes="64px"
-                  classNameWrap="h-12 w-12 shrink-0"
-                  className="!h-full !w-full object-cover"
-                />
+                {r.avatar ? (
+                  <UIimage
+                    src={r.avatar}
+                    alt={`${r.name} — resident photo`}
+                    aspect="1/1"
+                    rounded="full"
+                    sizes="64px"
+                    classNameWrap="h-12 w-12 shrink-0"
+                    className="!h-full !w-full object-cover"
+                  />
+                ) : (
+                  <span
+                    aria-hidden
+                    className="h-12 w-12 shrink-0 inline-flex items-center justify-center rounded-full bg-forest-700/10 text-forest-700 font-display text-sm font-bold"
+                  >
+                    {r.name.charAt(0)}
+                  </span>
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="font-display text-[0.95rem] font-semibold text-forest-900 leading-tight truncate">
                     {r.name}
@@ -328,7 +333,7 @@ export function ContactSection(): React.ReactElement {
                   <div className="min-w-0 flex-1">
                     <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-gold-600">Call Us</p>
                     <p className="mt-0.5 font-display text-[1.1rem] font-semibold text-forest-900 leading-tight">
-                      +91 98234 56789
+                      +91 96145 01727
                     </p>
                     <p className="text-xs text-ink-500">Mon – Sun · 7:00 AM – 11:00 PM</p>
                   </div>
@@ -370,9 +375,9 @@ export function ContactSection(): React.ReactElement {
                   <div className="min-w-0 flex-1">
                     <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-gold-600">Email</p>
                     <p className="mt-0.5 font-display text-[1.05rem] font-semibold text-forest-900 leading-tight break-all">
-                      bookings@ankitdamess.in
+                      ap423637@gmail.com
                     </p>
-                    <p className="text-xs text-ink-500">Full booking form — Phase 3</p>
+                    <p className="text-xs text-ink-500">Mon – Sun · Open 24×7</p>
                   </div>
                 </a>
               </li>
@@ -400,14 +405,13 @@ export function ContactSection(): React.ReactElement {
             <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-forest-600/10 blur-3xl" />
             <div className="relative">
               <Badge variant="gold-solid" size="sm" className="mb-4">
-                <LucideIcons.Sparkles className="h-3 w-3" /> Phase 2 Preview
+                <LucideIcons.Sparkles className="h-3 w-3" /> Quick Enquiry
               </Badge>
               <h3 className="font-display text-h3 text-forest-900 leading-tight">
                 Quick Enquiry Form
               </h3>
               <p className="mt-2 text-sm text-ink-600">
-                This is a preview. The full form will go live in Phase 2 with email + WhatsApp confirmation.
-                In the meantime, <a href={NAV_CONTACT_WHATSAPP} target="_blank" rel="noopener noreferrer" className="font-semibold text-gold-600 hover:underline">message us on WhatsApp →</a>
+                Fill the form below or <a href={NAV_CONTACT_WHATSAPP} target="_blank" rel="noopener noreferrer" className="font-semibold text-gold-600 hover:underline">message us on WhatsApp →</a> for the fastest response.
               </p>
 
               <form
@@ -420,7 +424,7 @@ export function ContactSection(): React.ReactElement {
                 className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2"
               >
                 <Field label="Full Name" placeholder="e.g. Rohit Sharma" />
-                <Field label="Phone / WhatsApp" placeholder="+91 ..." />
+                <Field label="Phone / WhatsApp" placeholder="+91 96145 01727" />
                 <Field label="Preferred Move-in Date" type="date" className="sm:col-span-2" />
                 <div className="sm:col-span-2">
                   <label className="block text-[0.8rem] font-semibold text-forest-900 mb-1.5">
@@ -453,7 +457,7 @@ export function ContactSection(): React.ReactElement {
                     Or Call Instead
                   </Button>
                   <Button type="submit" variant="gold" size="lg" className="w-full sm:w-auto shadow-gold">
-                    <LucideIcons.Send className="h-4 w-4" /> Send Enquiry (Preview)
+                    <LucideIcons.Send className="h-4 w-4" /> Send Enquiry
                   </Button>
                 </div>
               </form>

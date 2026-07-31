@@ -219,7 +219,7 @@ function HeroBackground({
         transition={reduced ? {} : { duration: 20, ease: 'linear' }}
       >
         <UIimage
-          src={posterUrl}
+          src={posterUrl || 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='}
           alt=""
           fill
           priority
@@ -228,8 +228,7 @@ function HeroBackground({
           sizes="100vw"
           classNameWrap="!rounded-none absolute inset-0"
           className="!absolute inset-0 h-full w-full object-cover"
-          placeholder="blur"
-          blurDataURL={posterImage?.blurDataURL ?? backgroundMedia.blurDataURL}
+          blurDataURL={posterImage?.blurDataURL ?? backgroundMedia?.blurDataURL}
         />
       </motion.div>
 

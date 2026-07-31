@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { jwtVerify } from 'jose';
+import { jwtVerify } from 'jose/jwt/verify';
 
 // Define the paths that don't require authentication
 const PUBLIC_API_ROUTES = ['/api/admin/login', '/api/admin/setup'];

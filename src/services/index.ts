@@ -261,6 +261,15 @@ const GALLERY_IMAGES: ReadonlyArray<{
     alt: 'Ankit Da Mess guest house building exterior Durgapur West Bengal',
     url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785466698/55943dbb-30b0-4d7d-b225-ebff634c22c2_ynzk8b.png',
   },
+  // ---- BUILDING — General (1 image) ----
+  {
+    id: 'g-b-3',
+    category: 'building',
+    title: 'Ankit Da Mess — Common Area',
+    alt: 'Common area and property of Ankit Da Mess guest house, Fuljhore Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785510272/ankit-da-mess/general/aqmahowmwfbpmy6emw99.png',
+    featured: true,
+  },
   // ---- TERRACE (3 images) ----
   {
     id: 'g-t-1',
@@ -286,6 +295,8 @@ const GALLERY_IMAGES: ReadonlyArray<{
   },
 ];
 
+const GALLERY_IMAGES_PORTRAIT_IDS = ['g-t-1', 'g-t-2', 'g-t-3'];
+
 const MOCK_GALLERY: ReadonlyArray<GalleryItem> = GALLERY_IMAGES.map((img) => ({
   id: img.id,
   title: img.title,
@@ -297,8 +308,8 @@ const MOCK_GALLERY: ReadonlyArray<GalleryItem> = GALLERY_IMAGES.map((img) => ({
     id: `${img.id}-media`,
     url: img.url,
     alt: img.alt,
-    width: 900,
-    height: 1200,
+    width: GALLERY_IMAGES_PORTRAIT_IDS.includes(img.id) ? 900 : 1200,
+    height: GALLERY_IMAGES_PORTRAIT_IDS.includes(img.id) ? 1200 : 900,
   },
 }));
 
@@ -394,7 +405,7 @@ const MOCK_VIRTUAL_TOUR: VirtualTourData = {
     'Ankit Da Mess guest house — Fuljhore, Rabindra Pally, Durgapur',
   posterWidth: 1748,
   posterHeight: 899,
-  videoUrl: 'https://res.cloudinary.com/dyc33dchn/video/upload/q_auto/WhatsApp_Video_2026-07-29_at_9.43.21_AM_dju0lt',
+  videoUrl: 'https://res.cloudinary.com/dyc33dchn/video/upload/v1785467893/WhatsApp_Video_2026-07-29_at_9.43.21_AM_dju0lt.mp4',
   ctaText: 'Contact Us',
   ctaHref: '#contact',
   supportingText:
@@ -685,6 +696,7 @@ const MOCK_FOOTER: FooterData = {
   id: 'footer-main',
   brandName: 'Ankit Da Mess',
   brandTagline: 'Guest House & PG',
+  brandLogoUrl: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785510737/ChatGPT_Image_Jul_31_2026_08_27_37_AM_spn3au.png',
   brandDescription:
     'Providing a safe, comfortable and affordable living space for students and working professionals.',
   quickLinksTitle: 'Quick Links',

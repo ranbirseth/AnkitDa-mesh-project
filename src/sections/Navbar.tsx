@@ -317,15 +317,18 @@ function Logo({ scrolled }: { readonly scrolled?: boolean }): React.ReactElement
       <span
         aria-hidden
         className={cn(
-          'relative inline-flex h-10 w-10 items-center justify-center rounded-xl transition-colors',
-          scrolled ? 'bg-gold-500 text-forest-900 shadow-gold' : 'bg-cream-50 text-forest-800 shadow-soft',
+          'relative inline-flex h-10 w-10 items-center justify-center rounded-xl overflow-hidden transition-colors',
+          scrolled ? 'shadow-gold' : 'shadow-soft',
         )}
       >
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 12 12 3l9 9" />
-          <path d="M5 10v10h14V10" />
-          <path d="M10 20v-6h4v6" />
-        </svg>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://res.cloudinary.com/dyc33dchn/image/upload/v1785510737/ChatGPT_Image_Jul_31_2026_08_27_37_AM_spn3au.png"
+          alt="Ankit Da Mess logo"
+          width={40}
+          height={40}
+          className="h-10 w-10 object-cover rounded-xl"
+        />
       </span>
       <span className="flex flex-col leading-tight">
         <span className={cn('font-display text-lg font-bold', scrolled ? 'text-cream-50' : 'text-cream-50')}>

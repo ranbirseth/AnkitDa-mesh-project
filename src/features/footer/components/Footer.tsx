@@ -67,12 +67,23 @@ export function Footer(): React.ReactElement {
             <Reveal variant="fadeUp" delay={reduced ? 0 : 0.05} className="sm:col-span-2 md:col-span-4">
               <div className="flex flex-col gap-4 max-w-sm">
                 <div className="flex items-center gap-3">
-                  <span
-                    aria-hidden
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-cream-50 text-forest-900"
-                  >
-                    <HomeIcon className="h-5 w-5" />
-                  </span>
+                  {data.brandLogoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={data.brandLogoUrl}
+                      alt={`${data.brandName} logo`}
+                      width={48}
+                      height={48}
+                      className="h-12 w-12 rounded-xl object-cover shadow-soft"
+                    />
+                  ) : (
+                    <span
+                      aria-hidden
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-cream-50 text-forest-900"
+                    >
+                      <HomeIcon className="h-5 w-5" />
+                    </span>
+                  )}
                   <div className="flex flex-col leading-tight">
                     <span className="font-display text-xl text-cream-50">
                       {data.brandName || 'Ankit Da Mess'}

@@ -18,7 +18,11 @@ import {
   ChevronRight,
   ShieldCheck,
   Video,
-  ListPlus
+  ListPlus,
+  FolderOpen,
+  MessageSquare,
+  Megaphone,
+  PanelBottom,
 } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/button';
@@ -27,13 +31,16 @@ const navItems = [
   { href: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/admin/hero', icon: Star, label: 'Hero Section' },
   { href: '/admin/rooms', icon: BedDouble, label: 'Rooms & Pricing' },
-  { href: '/admin/gallery', icon: Images, label: 'Gallery & Media' },
+  { href: '/admin/gallery', icon: Images, label: 'Gallery' },
+  { href: '/admin/media', icon: FolderOpen, label: 'Media Library' },
   { href: '/admin/amenities', icon: ListPlus, label: 'Amenities' },
-  { href: '/admin/testimonials', icon: Star, label: 'Testimonials' },
+  { href: '/admin/testimonials', icon: MessageSquare, label: 'Testimonials' },
   { href: '/admin/virtual-tour', icon: Video, label: 'Virtual Tour' },
-  { href: '/admin/why-choose', icon: ShieldCheck, label: 'Why Choose Us' },
+  { href: '/admin/why-choose-us', icon: ShieldCheck, label: 'Why Choose Us' },
   { href: '/admin/location', icon: MapPin, label: 'Location' },
   { href: '/admin/contact', icon: Phone, label: 'Contact' },
+  { href: '/admin/cta', icon: Megaphone, label: 'Call to Action' },
+  { href: '/admin/footer', icon: PanelBottom, label: 'Footer' },
   { href: '/admin/settings', icon: Settings, label: 'Settings' },
 ];
 

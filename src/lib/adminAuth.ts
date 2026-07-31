@@ -17,6 +17,22 @@ export async function requireAdmin(req: Request, options?: { ownerOnly?: boolean
     };
   }
 
+  // --- DEV MOCK BYPASS ---
+  // The mock login sets userId='mock-user-id-123' (not a real MongoDB ObjectId).
+  // Skip DB lookup for this special value so all protected routes work without MongoDB.
+  if (userId === 'mock-user-id-123') {
+    // Mock user is always OWNER — ownerOnly checks always pass
+    return {
+      ok: true,
+      admin: {
+        id: userId,
+        email: 'mock@admin.dev',
+        role: 'OWNER',
+      },
+    };
+  }
+  // --- END DEV MOCK BYPASS ---
+
   try {
     await connectDB();
     const admin = await AdminUser.findById(userId).lean();

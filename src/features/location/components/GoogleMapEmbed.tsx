@@ -43,16 +43,16 @@ export function GoogleMapEmbed({
         <>
           <div className="absolute inset-0">
             <UIImage
-              src="https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=900&q=70"
-              alt="Durgapur city map"
+              src="https://res.cloudinary.com/dyc33dchn/image/upload/v1785466819/bb1241e0-e3b1-44b2-b951-06320d537cd6_s6vkov.png"
+              alt="Ankit Da Mess building — Fuljhore, Rabindra Pally, Durgapur"
               aspect="4/3"
               rounded="none"
-              className="absolute inset-0 object-cover opacity-30"
+              className="absolute inset-0 object-cover opacity-40"
             />
           </div>
           <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-3 p-6 text-center">
             <LucideIcons.MapPin className="w-9 h-9 text-gold-600" aria-hidden />
-            <p className="font-medium text-forest-900">Interactive map coming soon</p>
+            <p className="font-medium text-forest-900">Fuljhore, Rabindra Pally, Durgapur 713206</p>
             <Button asChild variant="gold" size="sm">
               <a href={mapLink} target="_blank" rel="noopener noreferrer">
                 View on Google Maps

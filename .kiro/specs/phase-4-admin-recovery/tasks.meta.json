@@ -1,0 +1,264 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 Patch `src/lib/adminAuth.ts` to short-circuit DB lookup for the mock user": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583165
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505598162
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505652284
+      }
+    ],
+    "2.1 Create `src/app/admin/(dashboard)/rooms/[id]/page.tsx` — server component edit page": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583263
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505659858
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506539381
+      }
+    ],
+    "2.2 Fix the Edit link and wire the Delete button in `src/app/admin/(dashboard)/rooms/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583370
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505660687
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506540552
+      }
+    ],
+    "2.3 Improve `src/app/admin/(dashboard)/rooms/RoomForm.tsx` — add explicit image URL input": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583464
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505661604
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506541656
+      }
+    ],
+    "3.1 Create `src/app/admin/(dashboard)/hero/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583552
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505662427
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506702570
+      }
+    ],
+    "3.2 Create `src/app/admin/(dashboard)/virtual-tour/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583655
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505663293
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506702820
+      }
+    ],
+    "3.3 Create `src/app/admin/(dashboard)/why-choose-us/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583739
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506550488
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506702983
+      }
+    ],
+    "3.4 Create `src/app/admin/(dashboard)/location/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583828
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506551440
+      }
+    ],
+    "3.5 Create `src/app/admin/(dashboard)/contact/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505583918
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506709876
+      }
+    ],
+    "3.6 Create `src/app/admin/(dashboard)/cta/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584001
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506710834
+      }
+    ],
+    "3.7 Create `src/app/admin/(dashboard)/footer/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584077
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506711621
+      }
+    ],
+    "3.8 Create `src/app/admin/(dashboard)/settings/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584167
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506712574
+      }
+    ],
+    "4.1 Create `src/app/admin/(dashboard)/gallery/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584252
+      }
+    ],
+    "4.2 Create `src/app/admin/(dashboard)/amenities/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584332
+      }
+    ],
+    "4.3 Create `src/app/admin/(dashboard)/testimonials/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584435
+      }
+    ],
+    "5.1 Create `src/app/admin/(dashboard)/media/page.tsx`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584540
+      }
+    ],
+    "6.1 Update the `navItems` array to fix broken routes and add missing items": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584692
+      }
+    ],
+    "7.1 Append required keys to `.env.local`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584802
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505598667
+      },
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505653244
+      }
+    ],
+    "8. Final checkpoint — verify all routes and TypeScript compile": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505584927
+      }
+    ],
+    "1. Fix `requireAdmin` mock-login compatibility": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505652550
+      }
+    ],
+    "7. Add missing environment variable keys to `.env.local`": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785505653516
+      }
+    ],
+    "2. Fix the Rooms edit page and wire the Delete button": [
+      {
+        "executionId": "ab08a4b9-2446-4037-a784-b75ce402b555",
+        "chatSessionId": "sess_03adeb4a-3eb1-477c-8f51-b755768c6b10",
+        "timestamp": 1785506541765
+      }
+    ]
+  }
+}
