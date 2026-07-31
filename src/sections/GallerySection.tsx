@@ -19,6 +19,9 @@ import {
   Grid3X3 as GridIcon,
   SlidersHorizontal as SliderIcon,
   X as CloseIcon,
+  ChevronDown as ChevronDownIcon,
+  ChevronUp as ChevronUpIcon,
+  Images as ImagesIcon,
 } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectCreative, Autoplay, Pagination, Navigation, Keyboard } from 'swiper/modules';
@@ -28,16 +31,23 @@ import { galleryService, type IGalleryService } from '@/services';
 import { GALLERY_CATEGORIES, type GalleryCategoryId } from '@/constants';
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery';
 import { Skeleton } from '@/components/ui/skeleton';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import 'swiper/css';
 import 'swiper/css/effect-creative';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
+// Number of items to show initially in the masonry grid
+const INITIAL_GRID_COUNT = 4;
+// Number of items to show in the featured slider
+const SLIDER_COUNT = 5;
+
 export function GallerySection(): React.ReactElement {
   const [items, setItems] = React.useState<ReadonlyArray<GalleryItem>>([]);
   const [category, setCategory] = React.useState<GalleryCategory>('all');
   const [loading, setLoading] = React.useState(true);
+  const [expanded, setExpanded] = React.useState(false);
   const reduced = usePrefersReducedMotion();
 
   // Fetch
@@ -56,48 +66,64 @@ export function GallerySection(): React.ReactElement {
     };
   }, []);
 
+  // Reset expansion when category changes
+  React.useEffect(() => {
+    setExpanded(false);
+  }, [category]);
+
   const filtered = React.useMemo(() => {
     if (category === 'all') return items;
     return items.filter((i) => i.category === category);
   }, [items, category]);
 
-  // Lightbox state
-  const [lightboxIndex, setLightboxIndex] = React.useState<number | null>(null);
-  const openAt = (idx: number): void => setLightboxIndex(idx);
-  const close = (): void => setLightboxIndex(null);
-  const next = (): void => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex + 1) % filtered.length);
-  };
-  const prev = (): void => {
-    if (lightboxIndex === null) return;
-    setLightboxIndex((lightboxIndex - 1 + filtered.length) % filtered.length);
-  };
-  const current = lightboxIndex !== null ? filtered[lightboxIndex] : null;
-
-  // Keyboard nav for lightbox (Esc handled by Radix Dialog)
-  React.useEffect(() => {
-    if (lightboxIndex === null) return undefined;
-    const onKey = (e: KeyboardEvent): void => {
-      if (e.key === 'ArrowRight') {
-        setLightboxIndex((i) => (i === null ? null : (i + 1) % filtered.length));
-      }
-      if (e.key === 'ArrowLeft') {
-        setLightboxIndex((i) => (i === null ? null : (i - 1 + filtered.length) % filtered.length));
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, [lightboxIndex, filtered.length]);
-
-  const featured = React.useMemo(
+  // Slider: top SLIDER_COUNT featured items first
+  const sliderItems = React.useMemo(
     () =>
       filtered
         .filter((i) => i.featured)
         .concat(filtered.filter((i) => !i.featured))
-        .slice(0, 12),
+        .slice(0, SLIDER_COUNT),
     [filtered],
   );
+
+  // Grid: initially show INITIAL_GRID_COUNT, expand to all
+  const visibleGridItems = React.useMemo(
+    () => (expanded ? filtered : filtered.slice(0, INITIAL_GRID_COUNT)),
+    [filtered, expanded],
+  );
+
+  const hasMore = filtered.length > INITIAL_GRID_COUNT;
+  const hiddenCount = filtered.length - INITIAL_GRID_COUNT;
+
+  // Lightbox state — works on visibleGridItems
+  const [lightboxIndex, setLightboxIndex] = React.useState<number | null>(null);
+
+  const openAt = (idx: number): void => setLightboxIndex(idx);
+  const close = (): void => setLightboxIndex(null);
+  const next = (): void => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex + 1) % visibleGridItems.length);
+  };
+  const prev = (): void => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex - 1 + visibleGridItems.length) % visibleGridItems.length);
+  };
+  const current = lightboxIndex !== null ? visibleGridItems[lightboxIndex] : null;
+
+  // Keyboard nav for lightbox
+  React.useEffect(() => {
+    if (lightboxIndex === null) return undefined;
+    const onKey = (e: KeyboardEvent): void => {
+      if (e.key === 'ArrowRight') {
+        setLightboxIndex((i) => (i === null ? null : (i + 1) % visibleGridItems.length));
+      }
+      if (e.key === 'ArrowLeft') {
+        setLightboxIndex((i) => (i === null ? null : (i - 1 + visibleGridItems.length) % visibleGridItems.length));
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [lightboxIndex, visibleGridItems.length]);
 
   return (
     <SectionWrapper
@@ -121,12 +147,24 @@ export function GallerySection(): React.ReactElement {
         <GalleryFilters category={category} onChange={setCategory} reduced={reduced} />
       </Reveal>
 
-      {/* Glassmorphism 3D creative slider (Featured top 8) */}
+      {/* Featured Slider — top 5 images */}
       <Reveal variant="fadeUp" className="mb-14 md:mb-16">
-        <FeaturedGlassSlider items={featured.slice(0, 8)} onOpen={openAt} reduced={reduced} loading={loading} />
+        <FeaturedGlassSlider
+          items={sliderItems}
+          onOpen={(idx) => {
+            // Open in lightbox — map to filtered index
+            const item = sliderItems[idx];
+            if (!item) return;
+            const filteredIdx = visibleGridItems.findIndex((g) => g.id === item.id);
+            if (filteredIdx !== -1) openAt(filteredIdx);
+            else openAt(0);
+          }}
+          reduced={reduced}
+          loading={loading}
+        />
       </Reveal>
 
-      {/* Masonry Grid */}
+      {/* Masonry Grid — limited initially */}
       {loading ? (
         <GalleryMasonrySkeleton />
       ) : filtered.length === 0 ? (
@@ -136,25 +174,57 @@ export function GallerySection(): React.ReactElement {
           <p className="text-sm text-ink-600">Check back soon — we are adding more photos.</p>
         </div>
       ) : (
-        <GalleryMasonry
-          items={filtered}
-          onOpen={(absoluteIndex) => {
-            // absoluteIndex is index within original filtered array
-            openAt(absoluteIndex);
-          }}
-          reduced={reduced}
-        />
-      )}
+        <>
+          <GalleryMasonry
+            items={visibleGridItems}
+            onOpen={openAt}
+            reduced={reduced}
+          />
 
-      {/* View Full Gallery button */}
-      <Reveal variant="fadeUp" className="mt-12 flex justify-center">
-        <Button asChild variant="forest" size="lg">
-          <a href="/gallery">
-            View Full Gallery
-            <ChevronRightIcon className="h-4 w-4" aria-hidden />
-          </a>
-        </Button>
-      </Reveal>
+          {/* View Full Gallery / Show Less button */}
+          {hasMore && (
+            <Reveal variant="fadeUp" className="mt-10 flex flex-col items-center gap-3">
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                  key={expanded ? 'less' : 'more'}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex flex-col items-center gap-2"
+                >
+                  <Button
+                    variant={expanded ? 'outline' : 'forest'}
+                    size="lg"
+                    onClick={() => setExpanded((v) => !v)}
+                    className="min-w-[200px]"
+                  >
+                    {expanded ? (
+                      <>
+                        <ChevronUpIcon className="h-4 w-4" aria-hidden />
+                        Show Less
+                      </>
+                    ) : (
+                      <>
+                        <ImagesIcon className="h-4 w-4" aria-hidden />
+                        View Full Gallery
+                        <span className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-white/20 px-1.5 text-xs font-bold tabular-nums">
+                          +{hiddenCount}
+                        </span>
+                      </>
+                    )}
+                  </Button>
+                  {!expanded && (
+                    <p className="text-sm text-ink-500">
+                      {hiddenCount} more photo{hiddenCount !== 1 ? 's' : ''} available
+                    </p>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </Reveal>
+          )}
+        </>
+      )}
 
       {/* Lightbox */}
       <Dialog open={current !== null} onOpenChange={(open) => !open && close()}>
@@ -167,7 +237,7 @@ export function GallerySection(): React.ReactElement {
             <LightboxContent
               item={current}
               index={lightboxIndex!}
-              total={filtered.length}
+              total={visibleGridItems.length}
               onPrev={prev}
               onNext={next}
               onClose={close}
@@ -247,7 +317,7 @@ function FeaturedGlassSlider({
         modules={[EffectCreative, Autoplay, Pagination, Navigation, Keyboard]}
         effect="creative"
         grabCursor
-        loop={items.length >= 4}
+        loop={items.length >= 3}
         centeredSlides
         speed={reduced ? 0 : 700}
         slidesPerView="auto"
@@ -356,58 +426,65 @@ function GalleryMasonry({
   readonly reduced: boolean;
 }): React.ReactElement {
   return (
-    <Reveal
-      variant="fadeUp"
-      staggerChildren={reduced ? 0 : 0.04}
-      className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 [column-fill:_balance]"
-    >
-      {items.map((item, idx) => {
-        const heights = ['4/5', '3/4', '1/1', '5/6'] as const;
-        const aspect = heights[(idx * 3 + item.id.length) % heights.length] ?? '4/5';
-        return (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => onOpen(idx)}
-            className="group/masonry relative mb-4 inline-block w-full break-inside-avoid overflow-hidden rounded-2xl border border-forest-900/8 bg-cream-100 shadow-soft text-left transition-shadow duration-300 hover:shadow-card-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gold-500/50"
-            aria-label={`Open ${item.title} — ${labelForCategory(item.category)}`}
-          >
-            <UIimage
-              src={item.image.url}
-              alt={item.alt}
-              aspect={aspect}
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw"
-              zoomOnHover
-              rounded="2xl"
-              classNameWrap="!rounded-[inherit]"
-            />
-            <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-4 opacity-0 transition-opacity duration-300 group-hover/masonry:opacity-100">
-              <div className="flex items-start justify-between gap-2">
-                <Badge variant="glass-dark" size="sm">
-                  {labelForCategory(item.category)}
-                </Badge>
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-forest-800 backdrop-blur-md shadow-soft">
-                  <ZoomInIcon className="h-4 w-4" aria-hidden />
-                </span>
+    <AnimatePresence initial={false}>
+      <Reveal
+        variant="fadeUp"
+        staggerChildren={reduced ? 0 : 0.04}
+        className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 [column-fill:_balance]"
+      >
+        {items.map((item, idx) => {
+          const heights = ['4/5', '3/4', '1/1', '5/6'] as const;
+          const aspect = heights[(idx * 3 + item.id.length) % heights.length] ?? '4/5';
+          return (
+            <motion.button
+              key={item.id}
+              layout={!reduced}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              type="button"
+              onClick={() => onOpen(idx)}
+              className="group/masonry relative mb-4 inline-block w-full break-inside-avoid overflow-hidden rounded-2xl border border-forest-900/8 bg-cream-100 shadow-soft text-left transition-shadow duration-300 hover:shadow-card-hover focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-gold-500/50"
+              aria-label={`Open ${item.title} — ${labelForCategory(item.category)}`}
+            >
+              <UIimage
+                src={item.image.url}
+                alt={item.alt}
+                aspect={aspect}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1440px) 33vw, 25vw"
+                zoomOnHover
+                rounded="2xl"
+                classNameWrap="!rounded-[inherit]"
+              />
+              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-4 opacity-0 transition-opacity duration-300 group-hover/masonry:opacity-100">
+                <div className="flex items-start justify-between gap-2">
+                  <Badge variant="glass-dark" size="sm">
+                    {labelForCategory(item.category)}
+                  </Badge>
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-forest-800 backdrop-blur-md shadow-soft">
+                    <ZoomInIcon className="h-4 w-4" aria-hidden />
+                  </span>
+                </div>
+                <div className="rounded-xl bg-forest-900/65 p-3 backdrop-blur-md">
+                  <p className="font-display text-[0.95rem] leading-tight text-cream-50">{item.title}</p>
+                  {item.caption ? (
+                    <p className="mt-1 text-xs text-cream-100/85 line-clamp-2">{item.caption}</p>
+                  ) : null}
+                </div>
               </div>
-              <div className="rounded-xl bg-forest-900/65 p-3 backdrop-blur-md">
-                <p className="font-display text-[0.95rem] leading-tight text-cream-50">{item.title}</p>
-                {item.caption ? (
-                  <p className="mt-1 text-xs text-cream-100/85 line-clamp-2">{item.caption}</p>
-                ) : null}
-              </div>
-            </div>
-          </button>
-        );
-      })}
-    </Reveal>
+            </motion.button>
+          );
+        })}
+      </Reveal>
+    </AnimatePresence>
   );
 }
 
 function GalleryMasonrySkeleton(): React.ReactElement {
   return (
     <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
-      {Array.from({ length: 8 }).map((_, i) => (
+      {Array.from({ length: 4 }).map((_, i) => (
         <div key={i} className="mb-4 inline-block w-full break-inside-avoid">
           <Skeleton aspect={i % 2 === 0 ? 4 / 5 : 3 / 4} className="rounded-2xl bg-cream-200/60" />
         </div>

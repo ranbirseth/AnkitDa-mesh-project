@@ -71,10 +71,10 @@ export interface IFooterService {
 
 const HERO_BG: MediaAsset = {
   id: 'hero-bg-1',
-  url: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2400&q=80',
-  alt: 'Ankit Da Mess — exterior night view of a luxury guest house building with warm festive lights',
-  width: 2400,
-  height: 1600,
+  url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785466473/ChatGPT_Image_Jul_31_2026_08_23_55_AM_bxyp4o.png',
+  alt: 'Ankit Da Mess — guest house building exterior, Fuljhore Rabindra Pally Durgapur',
+  width: 1748,
+  height: 899,
   blurDataURL:
     'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAASABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwD4MhN8g6tQ1/9k=',
 };
@@ -127,8 +127,8 @@ const SINGLE_ROOM = buildRoom(
   'single-room',
   'Single Room',
   4000,
-  'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80',
-  'Cozy single occupancy room with study desk, natural light, and single bed',
+  'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467450/46529ff5-67a3-468f-a642-10ee011c6be4_yl8jrh.png',
+  'Single room interior at Ankit Da Mess, Fuljhore Rabindra Pally Durgapur',
   ['furnished', 'study', 'cupboard', 'vent'],
   { bedType: 'Single', capacityAdults: 1, roomSizeSqFt: 140 },
 );
@@ -138,8 +138,8 @@ const SHARED_ROOM = buildRoom(
   'shared-room',
   'Shared Room',
   2500,
-  'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=1200&q=80',
-  'Budget-friendly shared room with two beds, study area and cupboards',
+  'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467561/4d2cb641-df73-4c72-839a-f986bbb28075_jcyplk.png',
+  'Shared room at Ankit Da Mess guest house Durgapur',
   ['furnished', 'study', 'cupboard', 'vent'],
   { bedType: 'Twin', capacityAdults: 2, roomSizeSqFt: 180 },
 );
@@ -149,8 +149,8 @@ const BALCONY_ROOM = buildRoom(
   'room-with-balcony',
   'Room with Balcony',
   4500,
-  'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80',
-  'Premium room with private balcony overlooking greenery',
+  'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467620/b04218a2-42e6-4838-a5dd-00ed18372812_jbngub.png',
+  'Room with balcony at Ankit Da Mess guest house Durgapur',
   ['furnished', 'study', 'cupboard', 'vent', 'ac'],
   { bedType: 'Double', capacityAdults: 1, roomSizeSqFt: 200, status: 'available' },
 );
@@ -160,8 +160,8 @@ const PREMIUM_ROOM = buildRoom(
   'premium-room',
   'Premium Room',
   5000,
-  'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80',
-  'Top-floor premium ensuite room with attached bathroom and AC',
+  'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467729/d9267cbc-0277-4dd9-82c1-637bbe3611d8_cc599i.png',
+  'Premium room at Ankit Da Mess guest house Durgapur',
   ['furnished', 'study', 'cupboard', 'vent', 'attached', 'ac'],
   { bedType: 'Double', capacityAdults: 2, roomSizeSqFt: 240, status: 'available' },
 );
@@ -184,95 +184,105 @@ const GALLERY_IMAGES: ReadonlyArray<{
   featured?: boolean;
   relatedRoomId?: string;
 }> = [
+  // ---- ROOMS (5 images) ----
   {
     id: 'g-r-1',
     category: 'rooms',
-    title: 'Single Room — Study Corner',
-    alt: 'Single room with wooden study desk and chair, ample natural light',
-    url: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=900&q=80',
-    relatedRoomId: SINGLE_ROOM.id,
+    title: 'Room — View 1',
+    alt: 'Room interior at Ankit Da Mess guest house, Fuljhore Rabindra Pally Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467450/46529ff5-67a3-468f-a642-10ee011c6be4_yl8jrh.png',
+    relatedRoomId: 'r-single-01',
     featured: true,
   },
   {
     id: 'g-r-2',
     category: 'rooms',
-    title: 'Shared Room Twin Beds',
-    alt: 'Shared room with two single beds, clean linen and cupboard',
-    url: 'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=900&q=80',
-    relatedRoomId: SHARED_ROOM.id,
+    title: 'Room — View 2',
+    alt: 'Comfortable room at Ankit Da Mess PG and guest house Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467561/4d2cb641-df73-4c72-839a-f986bbb28075_jcyplk.png',
+    relatedRoomId: 'r-shared-01',
+    featured: true,
   },
   {
+    id: 'g-r-3',
+    category: 'rooms',
+    title: 'Room — View 3',
+    alt: 'Well-furnished room at Ankit Da Mess Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467620/b04218a2-42e6-4838-a5dd-00ed18372812_jbngub.png',
+    relatedRoomId: 'r-balcony-01',
+  },
+  {
+    id: 'g-r-4',
+    category: 'rooms',
+    title: 'Room — View 4',
+    alt: 'Spacious room with natural light at Ankit Da Mess Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467729/d9267cbc-0277-4dd9-82c1-637bbe3611d8_cc599i.png',
+    relatedRoomId: 'r-premium-01',
+  },
+  {
+    id: 'g-r-5',
+    category: 'rooms',
+    title: 'Room — View 5',
+    alt: 'Clean and comfortable room at Ankit Da Mess guest house Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467772/b7c45822-9b0c-4189-8e44-4f755345ac09_xjpaiz.png',
+    relatedRoomId: 'r-single-01',
+  },
+  // ---- KITCHEN (1 image) ----
+  {
+    id: 'g-k-1',
+    category: 'kitchen',
+    title: 'Kitchen',
+    alt: 'Fully equipped kitchen at Ankit Da Mess guest house Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785466943/25dbb07f-9b14-453c-9427-5b06f64664c6_jlyp9k.png',
+    featured: true,
+  },
+  // ---- BATHROOM (1 image) ----
+  {
+    id: 'g-bt-1',
+    category: 'bathroom',
+    title: 'Bathroom',
+    alt: 'Clean and modern bathroom at Ankit Da Mess guest house Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467134/439eb324-8fec-4d71-8df4-5868c19f5599_l3iwuv.png',
+    featured: true,
+  },
+  // ---- BUILDING (2 images) ----
+  {
     id: 'g-b-1',
-    category: 'terrace',
-    title: 'Terrace Lounge — Sunset View',
-    alt: 'Rooftop terrace seating with plants and evening light',
-    url: 'https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=900&q=80',
+    category: 'building',
+    title: 'Building — Front View',
+    alt: 'Ankit Da Mess building exterior — Fuljhore Rabindra Pally Durgapur 713206',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785466819/bb1241e0-e3b1-44b2-b951-06320d537cd6_s6vkov.png',
     featured: true,
   },
   {
     id: 'g-b-2',
     category: 'building',
-    title: 'Corridor — First Floor',
-    alt: 'Bright corridor with terracotta flooring and windows on both sides',
-    url: 'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=900&q=80',
+    title: 'Building — Side View',
+    alt: 'Ankit Da Mess guest house building exterior Durgapur West Bengal',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785466698/55943dbb-30b0-4d7d-b225-ebff634c22c2_ynzk8b.png',
   },
+  // ---- TERRACE (3 images) ----
   {
-    id: 'g-k-1',
-    category: 'kitchen',
-    title: 'Common Kitchen — Full Equipped',
-    alt: 'Community kitchen with modern stove, storage, and dining area',
-    url: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'g-k-2',
-    category: 'kitchen',
-    title: 'Meal Service Counter',
-    alt: 'Home style food service counter with clean utensils',
-    url: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'g-bl-1',
-    category: 'bathroom',
-    title: 'Attached Bathroom — Premium',
-    alt: 'Clean and modern attached bathroom with western toilet and shower',
-    url: 'https://images.unsplash.com/photo-1604007732959-0367b4cbf68a?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'g-bl-2',
-    category: 'bathroom',
-    title: 'Common Wash Area',
-    alt: 'Common wash area with multiple basins and good ventilation',
-    url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'g-bdg-2',
-    category: 'building',
-    title: 'Building Facade — Day',
-    alt: 'Ankit Da Mess building exterior during the day, welcoming entrance',
-    url: 'https://images.unsplash.com/photo-1582582621959-48d27397dc69?auto=format&fit=crop&w=900&q=80',
+    id: 'g-t-1',
+    category: 'terrace',
+    title: 'Terrace — View 1',
+    alt: 'Rooftop terrace at Ankit Da Mess guest house Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467352/d8e87d31-1c08-4267-bc11-7789addf4e8d_jq9aqx.png',
     featured: true,
   },
   {
-    id: 'g-bdg-3',
-    category: 'building',
-    title: 'Entry & Reception',
-    alt: 'Guest house ground floor reception area with seating and plants',
-    url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=80',
-  },
-  {
-    id: 'g-tr-2',
+    id: 'g-t-2',
     category: 'terrace',
-    title: 'Evening Terrace Hangout',
-    alt: 'Rooftop terrace with string lights for evening relaxation',
-    url: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=900&q=80',
+    title: 'Terrace — View 2',
+    alt: 'Open terrace area at Ankit Da Mess Durgapur for relaxation',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467308/0ae219a8-afd3-46fa-8207-4d0b9623b77e_gatmks.png',
   },
   {
-    id: 'g-r-3',
-    category: 'rooms',
-    title: 'Premium Room Ensuite',
-    alt: 'Premium room interior with double bed and attached bath',
-    url: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=900&q=80',
-    relatedRoomId: PREMIUM_ROOM.id,
+    id: 'g-t-3',
+    category: 'terrace',
+    title: 'Terrace — View 3',
+    alt: 'Terrace with open sky at Ankit Da Mess guest house Durgapur',
+    url: 'https://res.cloudinary.com/dyc33dchn/image/upload/v1785467243/79d3d15f-c691-4d2c-9de7-82022155fc8b_sp0vmc.png',
   },
 ];
 
@@ -308,12 +318,12 @@ const PRIMARY_CTA: LinkCTA = {
 };
 const WHATSAPP_CTA: LinkCTA = {
   text: 'WhatsApp',
-  href: 'https://wa.me/919823456789?text=Hi%20Ankit%20Da%20Mess%2C%20I%20would%20like%20to%20enquire%20about%20room%20availability',
+  href: 'https://wa.me/919614501727?text=Hi%20Ankit%20Da%20Mess%2C%20I%20would%20like%20to%20enquire%20about%20room%20availability',
   external: true,
 };
 const CALL_CTA: LinkCTA = {
   text: 'Call Now',
-  href: 'tel:+919823456789',
+  href: 'tel:+919614501727',
   external: true,
 };
 
@@ -377,18 +387,18 @@ const MOCK_VIRTUAL_TOUR: VirtualTourData = {
   enabled: true,
   title: 'Take a Virtual Tour',
   description:
-    'Explore every corner of Ankit Da Mess from the comfort of your home. Premium walkthrough of rooms, common areas, and rooftop.',
+    'Explore every corner of Ankit Da Mess from the comfort of your home. A real walkthrough of our rooms, common areas, and property.',
   posterUrl:
-    'https://images.unsplash.com/photo-1582582621959-48d27397dc69?auto=format&fit=crop&w=1400&q=80',
+    'https://res.cloudinary.com/dyc33dchn/image/upload/v1785466473/ChatGPT_Image_Jul_31_2026_08_23_55_AM_bxyp4o.png',
   posterAlt:
-    'Ankit Da Mess front facade — three-story building with balcony, terracotta accents, and green plants on railings',
-  posterWidth: 1400,
-  posterHeight: 930,
-  videoUrl: 'https://cdn.coverr.co/videos/coverr-walking-through-a-hotel-lobby-9657/1080p.mp4',
-  ctaText: 'Watch Full Video',
-  ctaHref: 'https://www.youtube.com/@ankitdamess',
+    'Ankit Da Mess guest house — Fuljhore, Rabindra Pally, Durgapur',
+  posterWidth: 1748,
+  posterHeight: 899,
+  videoUrl: 'https://res.cloudinary.com/dyc33dchn/video/upload/q_auto/WhatsApp_Video_2026-07-29_at_9.43.21_AM_dju0lt',
+  ctaText: 'Contact Us',
+  ctaHref: '#contact',
   supportingText:
-    'Explore Ankit Da Mess from the comfort of your home.',
+    'Real footage of Ankit Da Mess — Fuljhore, Rabindra Pally, Durgapur 713206.',
   panorama: false,
 };
 
@@ -461,17 +471,17 @@ const MOCK_NEARBY: ReadonlyArray<NearbyPlace> = [
 
 const MOCK_LOCATION: LocationData = {
   id: 'loc-main',
-  addressLine1: 'Fuljhore,',
-  addressLine2: 'Opp. Engineering College More',
+  addressLine1: 'Fuljhore, Rabindra Pally',
+  addressLine2: '',
   city: 'Durgapur',
   state: 'West Bengal',
-  postalCode: '713209',
+  postalCode: '713206',
   country: 'India',
   latitude: 23.5204,
   longitude: 87.3119,
   googleMapsEmbedUrl:
-    'https://www.google.com/maps?q=23.5204,87.3119&output=embed&z=15',
-  mapLink: 'https://maps.google.com/?q=23.5204,87.3119',
+    'https://www.google.com/maps?q=Fuljhore+Rabindra+Pally+Durgapur+713206&output=embed&z=15',
+  mapLink: 'https://www.google.com/maps/search/?api=1&query=Fuljhore+Rabindra+Pally+Durgapur+713206+West+Bengal',
   nearbyPlaces: MOCK_NEARBY,
   heading: 'Prime Location',
   subheading:
@@ -591,13 +601,13 @@ const MOCK_CONTACT_INFO: ContactInfoData = {
   heading: 'Get In Touch',
   eyebrow: 'CONTACT',
   subheading:
-    'Have a question about availability or pricing? Send us a message.',
-  phonePrimary: '+91 98234 56789',
-  phoneSecondary: '+91 98234 56790',
-  whatsapp: '+91 98234 56789',
-  email: 'ankitda.mess@gmail.com',
-  address: 'Fuljhore, Durgapur, West Bengal',
-  addressMapLink: 'https://maps.google.com/?q=Fuljhore+Durgapur+West+Bengal',
+    'Have a question about availability or pricing? Send us a message or call us directly.',
+  phonePrimary: '+91 96145 01727',
+  phoneSecondary: '+91 96145 01727',
+  whatsapp: '+919614501727',
+  email: 'ap423637@gmail.com',
+  address: 'Fuljhore, Rabindra Pally, Durgapur - 713206, West Bengal',
+  addressMapLink: 'https://www.google.com/maps/search/?api=1&query=Fuljhore+Rabindra+Pally+Durgapur+713206+West+Bengal',
   openHours: 'Open 24x7',
   enquiryTypes: [
     { id: 'single-room', label: 'Single Room' },
@@ -647,12 +657,12 @@ const MOCK_CTA: CTAData = {
   subheading: 'Contact us today for availability and best offers!',
   primaryButton: {
     text: 'Call Now',
-    href: 'tel:+919823456789',
+    href: 'tel:+919614501727',
     external: false,
   },
   secondaryButton: {
     text: 'WhatsApp Us',
-    href: 'https://wa.me/919823456789?text=Hi%20Ankit%20Da%20Mess%2C%20I%27d%20like%20to%20enquire%20about%20rooms',
+    href: 'https://wa.me/919614501727?text=Hi%20Ankit%20Da%20Mess%2C%20I%27d%20like%20to%20enquire%20about%20rooms',
     external: true,
   },
   tertiaryButton: {
@@ -688,11 +698,11 @@ const MOCK_FOOTER: FooterData = {
   ],
   contactTitle: 'Contact Us',
   contact: {
-    phonePrimary: '+91 98234 56789',
-    phoneSecondary: '+91 98234 56790',
-    whatsapp: '+91 98234 56789',
-    email: 'ankitda.mess@gmail.com',
-    address: 'Fuljhore, Durgapur, West Bengal',
+    phonePrimary: '+91 96145 01727',
+    phoneSecondary: '+91 96145 01727',
+    whatsapp: '+919614501727',
+    email: 'ap423637@gmail.com',
+    address: 'Fuljhore, Rabindra Pally, Durgapur - 713206, West Bengal',
   },
   socialLinks: [
     {
@@ -710,7 +720,7 @@ const MOCK_FOOTER: FooterData = {
     {
       id: 'sl-wa',
       platform: 'whatsapp',
-      url: 'https://wa.me/919823456789',
+      url: 'https://wa.me/919614501727',
       label: 'WhatsApp',
     },
   ],

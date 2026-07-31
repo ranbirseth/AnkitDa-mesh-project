@@ -19,7 +19,7 @@ export function QuickActionButtons({
   const whatsappLink = React.useMemo(() => {
     if (!whatsapp) return undefined;
     const digitsOnly = whatsapp.replace(/\D/g, '');
-    return `https://wa.me/${digitsOnly}?text=Hi%20Ankit%20Da%20Mess%2C%20I%20would%20like%20to%20enquire%20about%20rooms`;
+    return `https://wa.me/${digitsOnly}?text=Hi%20Ankit%20Da%20Mess%2C%20I%20would%20like%20to%20enquire%20about%20room%20availability%20at%20Fuljhore%2C%20Durgapur`;
   }, [whatsapp]);
 
   return (

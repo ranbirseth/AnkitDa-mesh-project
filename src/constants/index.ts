@@ -21,9 +21,9 @@ export const NAV_CTA: NavLinkItem = {
   isAnchor: true,
 } as const;
 
-export const NAV_CONTACT_WHATSAPP = 'https://wa.me/919823456789?text=Hi%20Ankit%20Da%20Mess%2C%20I%27d%20like%20to%20enquire%20about%20rooms';
-export const NAV_CONTACT_PHONE = 'tel:+919823456789';
-export const NAV_CONTACT_EMAIL = 'mailto:bookings@ankitdamess.in';
+export const NAV_CONTACT_WHATSAPP = 'https://wa.me/919614501727?text=Hi%20Ankit%20Da%20Mess%2C%20I%27d%20like%20to%20enquire%20about%20rooms';
+export const NAV_CONTACT_PHONE = 'tel:+919614501727';
+export const NAV_CONTACT_EMAIL = 'mailto:ap423637@gmail.com';
 
 // ================================================================
 // GALLERY CATEGORIES
