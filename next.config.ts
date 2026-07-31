@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import path from 'path';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -45,6 +46,18 @@ const nextConfig: NextConfig = {
   },
   webpack(config) {
     config.ignoreWarnings = [/Failed to parse source map/];
+
+    // Ensure the TypeScript `@/*` path alias resolves at build time on case-sensitive
+    // Linux hosts (Netlify). TypeScript paths are for the compiler only — webpack
+    // needs an explicit alias so imports like `@/components/...` resolve.
+    config.resolve = config.resolve || {};
+    // merge existing aliases if present
+    const existing = (config.resolve.alias as Record<string, string>) || {};
+    config.resolve.alias = {
+      ...existing,
+      '@': path.resolve(__dirname, 'src'),
+    };
+
     return config;
   },
   async headers() {
