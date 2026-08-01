@@ -141,15 +141,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <header className="h-16 flex items-center px-4 sm:px-6 lg:px-8 bg-forest-950/50 backdrop-blur-md border-b border-forest-800 shrink-0 sticky top-0 z-30">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="p-2 -ml-2 mr-4 text-forest-400 hover:text-forest-50 lg:hidden rounded-lg hover:bg-forest-800 focus:outline-none focus:ring-2 focus:ring-gold-500"
+            className="p-2 -ml-2 mr-3 text-forest-400 hover:text-forest-50 lg:hidden rounded-lg hover:bg-forest-800 focus:outline-none focus:ring-2 focus:ring-gold-500"
+            aria-label="Open sidebar menu"
           >
             <Menu className="w-6 h-6" />
           </button>
           
-          <div className="flex-1 flex justify-end items-center">
-            {/* User Profile dropdown can go here */}
-            <div className="w-8 h-8 rounded-full bg-forest-800 flex items-center justify-center text-sm font-medium text-gold-400 border border-forest-700">
-              AD
+          <div className="flex-1 flex items-center justify-between min-w-0">
+            <span className="lg:hidden text-sm font-medium text-forest-300 truncate">
+              {navItems.find((item) => pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/admin'))?.label ?? 'Dashboard'}
+            </span>
+            <div className="ml-auto flex items-center gap-3">
+              <div className="w-8 h-8 rounded-full bg-forest-800 flex items-center justify-center text-sm font-medium text-gold-400 border border-forest-700 shrink-0">
+                AD
+              </div>
             </div>
           </div>
         </header>

@@ -84,7 +84,7 @@ export function LocationSection(): React.ReactElement {
                 title={`${location.addressLine1} ${location.city} map`}
                 className="w-full"
               />
-              <div className="flex flex-wrap gap-3 items-center mt-5 sm:mt-6">
+              <div className="flex flex-wrap gap-2 sm:gap-3 items-center mt-4 sm:mt-5 md:mt-6">
                 <Button asChild variant="gold" size="sm">
                   <a href={location.mapLink} target="_blank" rel="noopener noreferrer">
                     View on Google Maps

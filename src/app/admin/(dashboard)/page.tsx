@@ -53,14 +53,14 @@ export default function AdminDashboardPage() {
 function DashboardStatCard({ title, value, icon: Icon }: { title: string, value: string | number, icon: React.ElementType }) {
   return (
     <Card className="bg-forest-900/50 border-forest-800 overflow-hidden relative group">
-      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-        <Icon className="w-16 h-16 text-gold-500" />
+      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
+        <Icon className="w-12 h-12 sm:w-16 sm:h-16 text-gold-500" />
       </div>
       <CardHeader className="pb-2 relative z-10">
-        <CardTitle className="text-forest-300 text-sm font-medium uppercase tracking-wider">{title}</CardTitle>
+        <CardTitle className="text-forest-300 text-xs sm:text-sm font-medium uppercase tracking-wider truncate">{title}</CardTitle>
       </CardHeader>
       <CardContent className="relative z-10">
-        <div className="text-3xl font-bold text-forest-50">{value}</div>
+        <div className="text-2xl sm:text-3xl font-bold text-forest-50 truncate">{value}</div>
       </CardContent>
     </Card>
   );

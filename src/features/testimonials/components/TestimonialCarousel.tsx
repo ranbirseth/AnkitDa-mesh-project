@@ -110,7 +110,7 @@ export function TestimonialCarousel({
           prevSlideMessage: 'Previous testimonial',
           nextSlideMessage: 'Next testimonial',
         }}
-        className="!overflow-visible [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:!h-auto !pb-14 md:px-10"
+        className="!overflow-visible [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:!h-auto !pb-14"
         onBeforeInit={(swiper) => {
           if (swiper.params.navigation && typeof swiper.params.navigation === 'object') {
             swiper.params.navigation.prevEl = prevRef.current;

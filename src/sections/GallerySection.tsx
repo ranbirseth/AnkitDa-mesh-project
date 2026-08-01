@@ -519,7 +519,7 @@ function LightboxContent({
           <Badge variant="glass" size="sm">
             {labelForCategory(item.category)}
           </Badge>
-          <h3 className="font-display text-xl md:text-2xl">{item.title}</h3>
+          <h3 className="font-display text-base sm:text-xl md:text-2xl truncate max-w-[180px] sm:max-w-none">{item.title}</h3>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="glass" size="sm" aria-label={`Image ${index + 1} of ${total}`}>
@@ -553,29 +553,31 @@ function LightboxContent({
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex items-center justify-between gap-2">
         <Button
           type="button"
           variant="glass"
-          size="md"
+          size="sm"
           onClick={onPrev}
           aria-label="Previous image"
           disabled={total <= 1}
-          className="!border-white/12"
+          className="!border-white/12 shrink-0"
         >
-          <ChevronLeftIcon className="h-4 w-4" /> Previous
+          <ChevronLeftIcon className="h-4 w-4" />
+          <span className="hidden sm:inline ml-1">Previous</span>
         </Button>
-        <p className="max-w-xl truncate text-sm text-cream-100/80">{item.caption ?? item.alt}</p>
+        <p className="min-w-0 flex-1 truncate text-xs sm:text-sm text-center text-cream-100/80 px-1">{item.caption ?? item.alt}</p>
         <Button
           type="button"
           variant="glass"
-          size="md"
+          size="sm"
           onClick={onNext}
           aria-label="Next image"
           disabled={total <= 1}
-          className="!border-white/12"
+          className="!border-white/12 shrink-0"
         >
-          Next <ChevronRightIcon className="h-4 w-4" />
+          <span className="hidden sm:inline mr-1">Next</span>
+          <ChevronRightIcon className="h-4 w-4" />
         </Button>
       </div>
     </div>

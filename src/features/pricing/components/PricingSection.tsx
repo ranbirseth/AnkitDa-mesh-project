@@ -144,19 +144,19 @@ export function PricingSection(): React.ReactElement {
                           <span className="flex items-center gap-2.5 shrink-0 ml-2">
                             <span
                               className={cn(
-                                'flex items-baseline gap-0.5 text-sm font-semibold',
+                                'flex items-baseline gap-0.5 text-xs sm:text-sm font-semibold',
                                 isSelected ? 'text-gold-400' : 'text-forest-800',
                               )}
                             >
-                              <RupeeIcon className="h-3.5 w-3.5" aria-hidden />
+                              <RupeeIcon className="h-3 w-3 sm:h-3.5 sm:w-3.5" aria-hidden />
                               <span>{room.priceMonthly.toLocaleString('en-IN')}</span>
                               <span
                                 className={cn(
-                                  'text-xs font-medium',
+                                  'hidden sm:inline text-xs font-medium',
                                   isSelected ? 'text-cream-100/60' : 'text-ink-500',
                                 )}
                               >
-                                /month
+                                /mo
                               </span>
                             </span>
                             <span

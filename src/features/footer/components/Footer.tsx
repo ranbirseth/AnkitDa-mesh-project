@@ -63,8 +63,8 @@ export function Footer(): React.ReactElement {
         {loading ? (
           <FooterSkeleton />
         ) : data ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8">
-            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.05} className="sm:col-span-2 md:col-span-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8">
+            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.05} className="sm:col-span-2 lg:col-span-4">
               <div className="flex flex-col gap-4 max-w-sm">
                 <div className="flex items-center gap-3">
                   {data.brandLogoUrl ? (
@@ -100,14 +100,14 @@ export function Footer(): React.ReactElement {
               </div>
             </Reveal>
 
-            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.1} className="md:col-span-4">
+            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.1} className="lg:col-span-4">
               <FooterLinks
                 title={data.quickLinksTitle || 'Quick Links'}
                 quickLinks={data.quickLinks}
               />
             </Reveal>
 
-            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.15} className="md:col-span-4">
+            <Reveal variant="fadeUp" delay={reduced ? 0 : 0.15} className="lg:col-span-4">
               <div className="flex flex-col">
                 <h4 className="font-display text-cream-50 mb-4 text-lg">
                   {data.contactTitle || 'Contact Us'}
@@ -203,8 +203,8 @@ function formatMapLink(address: string): string {
 
 function FooterSkeleton(): React.ReactElement {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8">
-      <div className="sm:col-span-2 md:col-span-4 flex flex-col gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8">
+      <div className="sm:col-span-2 lg:col-span-4 flex flex-col gap-4">
         <div className="flex items-center gap-3">
           <Skeleton className="h-10 w-10 rounded-full bg-cream-100/10" />
           <div className="flex flex-col gap-2">
@@ -220,7 +220,7 @@ function FooterSkeleton(): React.ReactElement {
         </div>
       </div>
 
-      <div className="md:col-span-4 flex flex-col">
+      <div className="lg:col-span-4 flex flex-col">
         <Skeleton className="h-6 w-32 rounded-xl bg-cream-100/10 mb-4" />
         <ul className="space-y-2">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -229,7 +229,7 @@ function FooterSkeleton(): React.ReactElement {
         </ul>
       </div>
 
-      <div className="md:col-span-4 flex flex-col">
+      <div className="lg:col-span-4 flex flex-col">
         <Skeleton className="h-6 w-32 rounded-xl bg-cream-100/10 mb-4" />
         <ul className="space-y-3">
           {Array.from({ length: 4 }).map((_, i) => (

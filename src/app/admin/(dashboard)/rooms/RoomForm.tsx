@@ -127,7 +127,7 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
             </select>
             {errors.status && <p className="text-red-400 text-sm mt-1">{errors.status.message}</p>}
           </div>
-          <div className="flex items-center mt-7">
+          <div className="flex items-center md:mt-7">
             <label className="flex items-center space-x-3 cursor-pointer">
               <input type="checkbox" {...register('featured')} className="w-5 h-5 rounded border-forest-700 text-gold-500 focus:ring-gold-500/50 bg-forest-950" />
               <span className="text-forest-200 font-medium">Featured Room</span>

@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-forest-700/30 blur-[120px] rounded-full" />
       </div>
 
-      <div className="w-full max-w-md bg-forest-800/80 backdrop-blur-xl border border-forest-700/50 rounded-2xl p-8 shadow-2xl z-10 relative">
+      <div className="w-full max-w-md bg-forest-800/80 backdrop-blur-xl border border-forest-700/50 rounded-2xl p-6 sm:p-8 shadow-2xl z-10 relative mx-4 sm:mx-0">
         <div className="text-center mb-8">
           <div className="w-16 h-16 bg-gradient-to-br from-gold-400 to-gold-600 rounded-2xl mx-auto flex items-center justify-center mb-4 shadow-lg shadow-gold-500/20">
             <Lock className="w-8 h-8 text-forest-950" />

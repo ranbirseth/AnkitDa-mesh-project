@@ -399,7 +399,7 @@ export function ContactSection(): React.ReactElement {
         <Reveal variant="fadeUp" delay={0.1} className="lg:col-span-7 order-1 lg:order-2">
           <Card
             variant="elevated"
-            className="relative overflow-hidden p-6 sm:p-8 lg:p-10"
+            className="relative overflow-hidden p-5 sm:p-7 lg:p-10"
           >
             <div aria-hidden className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-gold-500/10 blur-3xl" />
             <div aria-hidden className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-forest-600/10 blur-3xl" />

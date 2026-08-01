@@ -124,7 +124,7 @@ export function RoomsSection(): React.ReactElement {
               1280: { slidesPerView: 3, spaceBetween: 28 },
               1536: { slidesPerView: 4, spaceBetween: 28 },
             }}
-            className="!overflow-visible [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:!h-auto !pb-6"
+            className="!overflow-visible [&_.swiper-wrapper]:items-stretch [&_.swiper-slide]:!h-auto !pb-6 max-w-full"
           >
             {rooms.map((room, idx) => (
               <SwiperSlide key={room.id} className="!flex !items-stretch">
@@ -373,7 +373,7 @@ function RoomTilt3D({
 
 function RoomsGridSkeleton(): React.ReactElement {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div className="grid grid-cols-1 gap-5 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {Array.from({ length: 4 }).map((_, i) => (
         <div key={i} className="flex flex-col gap-4 rounded-2xl border border-forest-900/8 bg-white p-5 shadow-soft">
           <Skeleton aspect={4 / 3} className="w-full rounded-2xl bg-cream-200/70" />

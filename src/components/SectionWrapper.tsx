@@ -89,7 +89,7 @@ export function SectionWrapper({
               </div>
             )}
             {heading && HeadingTag && (
-              <div className="flex items-end justify-between gap-6 w-full">
+              <div className="flex flex-wrap items-end justify-between gap-4 sm:gap-6 w-full">
                 {(() => {
                   const Tag: 'h2' = HeadingTag;
                   return (

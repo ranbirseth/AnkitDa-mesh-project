@@ -328,16 +328,16 @@ function AmenitiesStrip({ chips }: { readonly chips: ReadonlyArray<HeroAmenityCh
 function AmenityChip({ chip }: { readonly chip: HeroAmenityChip }): React.ReactElement {
   const IconComponent = (LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>)[chip.iconKey] ?? LucideIcons.Home;
   return (
-    <li className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-white/6">
+    <li className="flex items-center gap-2.5 rounded-xl p-2 sm:p-2.5 transition-colors hover:bg-white/6">
       <span
         aria-hidden
-        className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gold-500/15 text-gold-300"
+        className="inline-flex h-8 w-8 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-gold-500/15 text-gold-300"
       >
-        <IconComponent className="h-[18px] w-[18px]" />
+        <IconComponent className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
       </span>
-      <span className="min-w-0 flex flex-col">
-        <span className="truncate text-[0.8rem] font-semibold text-cream-50">{chip.title}</span>
-        <span className="truncate text-[0.7rem] text-cream-100/70">{chip.subtitle}</span>
+      <span className="min-w-0 flex flex-col overflow-hidden">
+        <span className="truncate text-[0.72rem] sm:text-[0.8rem] font-semibold text-cream-50 leading-tight">{chip.title}</span>
+        <span className="truncate text-[0.65rem] sm:text-[0.7rem] text-cream-100/70 leading-tight">{chip.subtitle}</span>
       </span>
     </li>
   );
@@ -481,7 +481,7 @@ function HeroSkeleton(): React.ReactElement {
             <Skeleton className="h-12 w-40 rounded-full bg-cream-50/10" />
             <Skeleton className="h-12 w-40 rounded-full bg-cream-50/10" />
           </div>
-          <Skeleton className="mt-6 h-24 w-full rounded-2xl bg-cream-100/10" />
+          <Skeleton className="mt-4 h-20 sm:h-24 w-full rounded-2xl bg-cream-100/10" />
         </div>
       </div>
     </section>

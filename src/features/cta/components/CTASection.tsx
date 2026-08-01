@@ -120,7 +120,7 @@ export function CTASection(): React.ReactElement {
                 {data.tertiaryButton && (
                   <Button
                     asChild
-                    variant="ghost"
+                    variant="outline"
                     size="lg"
                   >
                     <Link

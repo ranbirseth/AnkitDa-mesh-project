@@ -78,15 +78,15 @@ export default function AdminRoomsPage() {
       </div>
 
       <div className="bg-forest-900/50 border border-forest-800 rounded-xl overflow-hidden backdrop-blur-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-forest-200">
+        <div className="overflow-x-auto -mx-0">
+          <table className="w-full text-left text-sm text-forest-200 min-w-[600px]">
             <thead className="bg-forest-950/50 text-forest-300 uppercase font-medium border-b border-forest-800">
               <tr>
-                <th className="px-6 py-4">Room Name</th>
-                <th className="px-6 py-4">Price / Mo</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Featured</th>
-                <th className="px-6 py-4 text-right">Actions</th>
+                <th className="px-4 sm:px-6 py-4">Room Name</th>
+                <th className="px-4 sm:px-6 py-4">Price / Mo</th>
+                <th className="px-4 sm:px-6 py-4">Status</th>
+                <th className="px-4 sm:px-6 py-4 hidden sm:table-cell">Featured</th>
+                <th className="px-4 sm:px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-forest-800">
@@ -105,23 +105,23 @@ export default function AdminRoomsPage() {
               ) : (
                 rooms.map((room) => (
                   <tr key={room.id} className="hover:bg-forest-800/30 transition-colors">
-                    <td className="px-6 py-4 font-medium text-forest-50">{room.name}</td>
-                    <td className="px-6 py-4">₹{room.priceMonthly.toLocaleString('en-IN')}</td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-4 font-medium text-forest-50">{room.name}</td>
+                    <td className="px-4 sm:px-6 py-4">₹{room.priceMonthly.toLocaleString('en-IN')}</td>
+                    <td className="px-4 sm:px-6 py-4">
                       <Badge
                         variant={room.status === 'available' ? 'available' : room.status === 'maintenance' ? 'maintenance' : 'filled'}
                       >
                         {room.status}
                       </Badge>
                     </td>
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-4 hidden sm:table-cell">
                       {room.featured ? (
                         <CheckCircle className="w-4 h-4 text-gold-400" />
                       ) : (
                         <XCircle className="w-4 h-4 text-forest-600" />
                       )}
                     </td>
-                    <td className="px-6 py-4 text-right space-x-2">
+                    <td className="px-4 sm:px-6 py-4 text-right space-x-2">
                       <Button
                         variant="ghost"
                         size="icon"
