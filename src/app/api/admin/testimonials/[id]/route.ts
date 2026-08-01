@@ -42,7 +42,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
     }
 
-    revalidateTag('testimonials');
+    revalidateTag('testimonials', 'max');
 
     return NextResponse.json({ success: true, data: item });
   } catch (error: any) {
@@ -70,7 +70,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Testimonial not found' }, { status: 404 });
     }
 
-    revalidateTag('testimonials');
+    revalidateTag('testimonials', 'max');
 
     return NextResponse.json({ success: true, message: 'Testimonial deleted successfully' });
   } catch (error: any) {

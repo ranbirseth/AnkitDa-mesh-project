@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     await connectDB();
     const item = await GalleryModel.create(parsed.data);
 
-    revalidateTag('gallery');
+    revalidateTag('gallery', 'max');
 
     return NextResponse.json({ success: true, data: item }, { status: 201 });
   } catch (error: any) {

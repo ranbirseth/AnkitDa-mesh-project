@@ -39,7 +39,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Amenity not found' }, { status: 404 });
     }
 
-    revalidateTag('amenities');
+    revalidateTag('amenities', 'max');
 
     return NextResponse.json({ success: true, data: item });
   } catch (error: any) {
@@ -67,7 +67,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Amenity not found' }, { status: 404 });
     }
 
-    revalidateTag('amenities');
+    revalidateTag('amenities', 'max');
 
     return NextResponse.json({ success: true, message: 'Amenity deleted successfully' });
   } catch (error: any) {

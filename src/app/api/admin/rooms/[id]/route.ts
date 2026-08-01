@@ -51,7 +51,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Room not found' }, { status: 404 });
     }
 
-    revalidateTag('rooms');
+    revalidateTag('rooms', 'max');
 
     return NextResponse.json({ success: true, data: room });
   } catch (error: any) {
@@ -79,7 +79,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Room not found' }, { status: 404 });
     }
 
-    revalidateTag('rooms');
+    revalidateTag('rooms', 'max');
 
     return NextResponse.json({ success: true, message: 'Room deleted successfully' });
   } catch (error: any) {

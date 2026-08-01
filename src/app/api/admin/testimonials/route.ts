@@ -53,7 +53,7 @@ export async function POST(req: Request) {
     await connectDB();
     const item = await TestimonialModel.create(parsed.data);
 
-    revalidateTag('testimonials');
+    revalidateTag('testimonials', 'max');
 
     return NextResponse.json({ success: true, data: item }, { status: 201 });
   } catch (error: any) {

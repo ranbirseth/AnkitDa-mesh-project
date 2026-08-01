@@ -62,7 +62,7 @@ export async function POST(req: Request) {
     await connectDB();
     const room = await RoomModel.create(parsed.data);
 
-    revalidateTag('rooms');
+    revalidateTag('rooms', 'max');
 
     return NextResponse.json({ success: true, data: room }, { status: 201 });
   } catch (error: any) {

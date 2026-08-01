@@ -6,7 +6,7 @@ import { jwtVerify } from 'jose/jwt/verify';
 const PUBLIC_API_ROUTES = ['/api/admin/login', '/api/admin/setup'];
 const PUBLIC_PAGES = ['/admin/login'];
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // Only run middleware on /admin and /api/admin routes

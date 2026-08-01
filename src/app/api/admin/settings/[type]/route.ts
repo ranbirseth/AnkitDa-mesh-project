@@ -57,8 +57,8 @@ export async function PUT(
       { new: true, upsert: true }
     );
 
-    revalidateTag(type);
-    revalidateTag('settings');
+    revalidateTag(type, 'max');
+    revalidateTag('settings', 'max');
 
     return NextResponse.json({ success: true, data: settings.data });
   } catch (error: any) {

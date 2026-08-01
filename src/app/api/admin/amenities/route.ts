@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     await connectDB();
     const item = await AmenityModel.create(parsed.data);
 
-    revalidateTag('amenities');
+    revalidateTag('amenities', 'max');
 
     return NextResponse.json({ success: true, data: item }, { status: 201 });
   } catch (error: any) {

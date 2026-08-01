@@ -44,7 +44,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Gallery item not found' }, { status: 404 });
     }
 
-    revalidateTag('gallery');
+    revalidateTag('gallery', 'max');
 
     return NextResponse.json({ success: true, data: item });
   } catch (error: any) {
@@ -72,7 +72,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Gallery item not found' }, { status: 404 });
     }
 
-    revalidateTag('gallery');
+    revalidateTag('gallery', 'max');
 
     return NextResponse.json({ success: true, message: 'Gallery item deleted successfully' });
   } catch (error: any) {
