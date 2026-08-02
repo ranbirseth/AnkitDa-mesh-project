@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface ISiteSettings extends Document {
-  type: 'hero' | 'cta' | 'footer' | 'location' | 'contact' | 'virtual-tour' | 'why-choose-us';
+  type: 'hero' | 'cta' | 'footer' | 'location' | 'contact' | 'virtual-tour' | 'why-choose-us' | 'social-media' | 'settings';
   data: any; // Flexible schema for singletons
   createdAt: Date;
   updatedAt: Date;
@@ -13,7 +13,7 @@ const SiteSettingsSchema: Schema = new Schema(
       type: String, 
       required: true, 
       unique: true, 
-      enum: ['hero', 'cta', 'footer', 'location', 'contact', 'virtual-tour', 'why-choose-us'] 
+      enum: ['hero', 'cta', 'footer', 'location', 'contact', 'virtual-tour', 'why-choose-us', 'social-media', 'settings'] 
     },
     data: { type: Schema.Types.Mixed, required: true },
   },

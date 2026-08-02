@@ -23,6 +23,8 @@ import {
   MessageSquare,
   Megaphone,
   PanelBottom,
+  Inbox,
+  Share2,
 } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { Button } from '@/components/ui/button';
@@ -32,6 +34,7 @@ const navItems = [
   { href: '/admin/hero', icon: Star, label: 'Hero Section' },
   { href: '/admin/rooms', icon: BedDouble, label: 'Rooms & Pricing' },
   { href: '/admin/gallery', icon: Images, label: 'Gallery' },
+  { href: '/admin/enquiries', icon: Inbox, label: 'Enquiries' },
   { href: '/admin/media', icon: FolderOpen, label: 'Media Library' },
   { href: '/admin/amenities', icon: ListPlus, label: 'Amenities' },
   { href: '/admin/testimonials', icon: MessageSquare, label: 'Testimonials' },
@@ -41,6 +44,7 @@ const navItems = [
   { href: '/admin/contact', icon: Phone, label: 'Contact' },
   { href: '/admin/cta', icon: Megaphone, label: 'Call to Action' },
   { href: '/admin/footer', icon: PanelBottom, label: 'Footer' },
+  { href: '/admin/settings/social', icon: Share2, label: 'Social Media' },
   { href: '/admin/settings', icon: Settings, label: 'Settings' },
 ];
 
@@ -91,7 +95,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
         <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1 scrollbar-thin scrollbar-thumb-forest-800">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/admin');
+            const isActive = pathname === item.href || (pathname.startsWith(item.href + '/') && item.href !== '/admin');
             return (
               <Link
                 key={item.href}
@@ -149,7 +153,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           
           <div className="flex-1 flex items-center justify-between min-w-0">
             <span className="lg:hidden text-sm font-medium text-forest-300 truncate">
-              {navItems.find((item) => pathname === item.href || (pathname.startsWith(item.href) && item.href !== '/admin'))?.label ?? 'Dashboard'}
+              {navItems.find((item) => pathname === item.href || (pathname.startsWith(item.href + '/') && item.href !== '/admin'))?.label ?? 'Dashboard'}
             </span>
             <div className="ml-auto flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-forest-800 flex items-center justify-center text-sm font-medium text-gold-400 border border-forest-700 shrink-0">

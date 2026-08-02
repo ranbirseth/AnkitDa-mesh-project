@@ -4,7 +4,7 @@ import { SiteSettingsModel } from '@/models/SiteSettings';
 import { revalidateTag } from 'next/cache';
 import { requireAdmin } from '@/lib/adminAuth';
 
-const allowedTypes = ['hero', 'cta', 'footer', 'location', 'contact', 'virtual-tour', 'why-choose-us', 'settings'];
+const allowedTypes = ['hero', 'cta', 'footer', 'location', 'contact', 'virtual-tour', 'why-choose-us', 'settings', 'social-media'];
 
 export async function GET(
   _req: Request,
@@ -18,7 +18,7 @@ export async function GET(
     }
 
     await connectDB();
-    const settings = await SiteSettingsModel.findOne({ type: type === 'settings' ? 'hero' : type });
+    const settings = await SiteSettingsModel.findOne({ type });
 
     if (!settings) {
       return NextResponse.json({ success: true, data: null });
@@ -52,7 +52,7 @@ export async function PUT(
     await connectDB();
 
     const settings = await SiteSettingsModel.findOneAndUpdate(
-      { type: type === 'settings' ? 'hero' : type },
+      { type },
       { data: body },
       { new: true, upsert: true }
     );

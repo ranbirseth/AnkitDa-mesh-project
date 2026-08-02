@@ -173,6 +173,9 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
           <input type="hidden" {...register('primaryImage.id')} />
         </div>
 
+        {/* Gallery Images */}
+        <GalleryImagesField watch={watch} setValue={setValue} />
+
         <div className="flex justify-end border-t border-forest-800 pt-6">
           <Button
             type="submit"
@@ -183,6 +186,87 @@ export default function RoomForm({ initialData, roomId }: { initialData?: any, r
           </Button>
         </div>
       </form>
+    </div>
+  );
+}
+
+function GalleryImagesField({
+  watch,
+  setValue,
+}: {
+  watch: any;
+  setValue: any;
+}) {
+  const gallery: Array<{ id: string; url: string; alt: string }> = watch('gallery') || [];
+
+  const addImage = () => {
+    setValue('gallery', [...gallery, { id: '', url: '', alt: '' }]);
+  };
+
+  const removeImage = (idx: number) => {
+    setValue('gallery', gallery.filter((_, i) => i !== idx));
+  };
+
+  const updateImage = (idx: number, field: 'url' | 'alt', value: string) => {
+    const updated = gallery.map((img, i) =>
+      i === idx ? { ...img, [field]: value, id: field === 'url' ? value : img.id || img.url } : img
+    );
+    setValue('gallery', updated);
+  };
+
+  const ic = 'w-full px-3 py-2 bg-forest-950 border border-forest-700 rounded-lg text-forest-50 focus:ring-2 focus:ring-gold-500/50 text-sm placeholder-forest-500';
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center justify-between border-b border-forest-800 pb-2">
+        <h3 className="text-sm font-semibold text-forest-200 uppercase tracking-wider">Gallery Images ({gallery.length})</h3>
+        <button
+          type="button"
+          onClick={addImage}
+          className="inline-flex items-center gap-1.5 text-xs text-gold-400 hover:text-gold-300 bg-gold-500/10 hover:bg-gold-500/15 px-3 py-1.5 rounded-lg transition-colors"
+        >
+          + Add Image
+        </button>
+      </div>
+      {gallery.length === 0 && (
+        <p className="text-forest-500 text-sm text-center py-4">No gallery images. Click &quot;Add Image&quot; to add more photos.</p>
+      )}
+      <div className="space-y-3">
+        {gallery.map((img, idx) => (
+          <div key={idx} className="bg-forest-950/50 border border-forest-800 rounded-lg p-4 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs text-forest-500 font-mono">Gallery Image #{idx + 1}</span>
+              <button
+                type="button"
+                onClick={() => removeImage(idx)}
+                className="text-red-400 hover:text-red-300 text-xs px-2 py-1 rounded hover:bg-red-950/30 transition-colors"
+              >
+                Remove
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div>
+                <label className="block text-xs text-forest-300 mb-1">Image URL</label>
+                <input
+                  value={img.url}
+                  onChange={e => updateImage(idx, 'url', e.target.value)}
+                  className={ic}
+                  placeholder="https://res.cloudinary.com/..."
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-forest-300 mb-1">Alt Text</label>
+                <input
+                  value={img.alt}
+                  onChange={e => updateImage(idx, 'alt', e.target.value)}
+                  className={ic}
+                  placeholder="Image description"
+                />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

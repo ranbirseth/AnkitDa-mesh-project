@@ -10,7 +10,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Reveal } from '@/components/Reveal';
 import { roomsService, type IRoomsService } from '@/services';
 import { usePrefersReducedMotion } from '@/hooks/useMediaQuery';
-import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { cn } from '@/lib/cn';
 import { fadeUp } from '@/animations/variants';
 import type { Room, RoomStatus } from '@/types';
@@ -35,7 +34,6 @@ export function PricingSection(): React.ReactElement {
   const [loading, setLoading] = React.useState(true);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const reduced = usePrefersReducedMotion();
-  const { scrollTo } = useSmoothScroll();
 
   React.useEffect(() => {
     let mounted = true;
@@ -57,11 +55,7 @@ export function PricingSection(): React.ReactElement {
     setSelectedIndex(index);
   };
 
-  const handleEnquire = (): void => {
-    scrollTo('#contact', { offset: -80 });
-  };
-
-  const RupeeIcon = LucideIcons.IndianRupee;
+const RupeeIcon = LucideIcons.IndianRupee;
 
   return (
     <section
@@ -240,13 +234,15 @@ export function PricingSection(): React.ReactElement {
                             </ul>
 
                             <Button
+                              asChild
                               variant="forest"
                               size="lg"
-                              onClick={handleEnquire}
                               className="mt-1 w-full"
                             >
-                              <LucideIcons.MessageSquare className="h-4.5 w-4.5" aria-hidden />
-                              Enquire Now
+                              <a href={`/rooms/${selectedRoom.slug}`}>
+                                <LucideIcons.ExternalLink className="h-4.5 w-4.5" aria-hidden />
+                                View Room Details
+                              </a>
                             </Button>
                           </div>
                         </div>

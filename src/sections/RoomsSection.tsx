@@ -232,9 +232,9 @@ function RoomCard({
 
             <div className="mt-auto pt-2">
               <Button asChild variant="forest" size="md" className="group/btn w-full justify-center overflow-hidden">
-                <a href="#contact">
+                <a href={`/rooms/${room.slug}`}>
                   <span className="relative inline-flex items-center gap-2">
-                    Enquire Now
+                    View Details
                     <ChevronRightIcon className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" aria-hidden />
                   </span>
                 </a>
