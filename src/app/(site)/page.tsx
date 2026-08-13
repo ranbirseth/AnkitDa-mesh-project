@@ -12,6 +12,163 @@ import { CTASection } from '@/features/cta/components/CTASection';
 import { Container } from '@/components/Container';
 
 export default function HomePage(): React.ReactElement {
+  // 🔒 TEMPORARY WEBSITE PAYMENT LOCK
+  // Before payment: true
+  // After payment: false
+  const SITE_LOCKED = true;
+
+  // ===== PAYMENT PENDING PAGE =====
+   // ===== PAYMENT PENDING PAGE =====
+  if (SITE_LOCKED) {
+    return (
+      <main className="min-h-screen bg-gradient-to-br from-forest-950 via-forest-900 to-black px-6 py-12 flex items-center justify-center">
+        <div className="w-full max-w-2xl">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 border border-white/20 backdrop-blur-xl">
+              <svg
+                className="h-8 w-8 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 9v3.75m0 3.75h.008M10.29 3.86l-7.32 12.67A2 2 0 004.7 19.5h14.6a2 2 0 001.73-2.97L13.71 3.86a2 2 0 00-3.42 0z"
+                />
+              </svg>
+            </div>
+
+            <p className="text-sm font-medium uppercase tracking-[0.25em] text-amber-400">
+              Website Activation
+            </p>
+
+            <h1 className="mt-3 text-3xl md:text-5xl font-bold tracking-tight text-white">
+              Deployment Payment Pending
+            </h1>
+
+            <p className="mx-auto mt-4 max-w-xl text-base md:text-lg leading-7 text-white/65">
+              Your website is ready for Access but your deployment free instance is now end at 13/08/26 . This was is one time payment no yearly package need so Please complete the
+              infrastructure and deployment payment below to activate the
+              live website.
+            </p>
+          </div>
+
+          {/* Payment Card */}
+          <div className="rounded-3xl border border-white/10 bg-white/[0.06] p-5 md:p-7 shadow-2xl backdrop-blur-xl">
+            {/* Services */}
+            <div className="space-y-3">
+              {/* Netlify */}
+              <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-lg font-bold text-white">
+                    N
+                  </div>
+
+                  <div>
+                    <h2 className="font-semibold text-white">
+                      Netlify Deployment
+                    </h2>
+                    <p className="text-sm text-white/45">
+                      Website hosting & deployment
+                    </p>
+                  </div>
+                </div>
+
+                <span className="font-semibold text-white">
+                  ₹499
+                </span>
+              </div>
+
+              {/* Render */}
+              <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-lg font-bold text-white">
+                    R
+                  </div>
+
+                  <div>
+                    <h2 className="font-semibold text-white">
+                      Render Server
+                    </h2>
+                    <p className="text-sm text-white/45">
+                      Backend & server infrastructure
+                    </p>
+                  </div>
+                </div>
+
+                <span className="font-semibold text-white">
+                  ₹499
+                </span>
+              </div>
+
+              {/* MongoDB */}
+              <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-lg font-bold text-white">
+                    M
+                  </div>
+
+                  <div>
+                    <h2 className="font-semibold text-white">
+                      MongoDB Database
+                    </h2>
+                    <p className="text-sm text-white/45">
+                      Database & data infrastructure
+                    </p>
+                  </div>
+                </div>
+
+                <span className="font-semibold text-white">
+                  ₹499
+                </span>
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div className="my-6 h-px bg-white/10" />
+
+            {/* Total */}
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-white/45">
+                  Total deployment & infrastructure
+                </p>
+
+                <p className="mt-1 text-2xl font-bold text-white">
+                  ₹1,497
+                </p>
+              </div>
+
+              <div className="rounded-full border border-amber-400/20 bg-amber-400/10 px-4 py-2">
+                <span className="text-sm font-medium text-amber-300">
+                  Payment Required
+                </span>
+              </div>
+            </div>
+
+            {/* Notice */}
+            <div className="mt-6 rounded-2xl border border-amber-400/15 bg-amber-400/[0.06] p-4">
+              <p className="text-sm leading-6 text-white/65">
+                Once the deployment payment is completed and confirmed,
+                website access will be activated and the live website
+                will become available.
+              </p>
+            </div>
+          </div>
+
+          {/* Footer */}
+          <p className="mt-6 text-center text-xs text-white/35">
+            Deployment access is currently restricted until payment
+            confirmation.
+          </p>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <>
       {/* ===== PHASE 1 — HERO (full-width, scroll anchor #home) ===== */}
@@ -115,7 +272,10 @@ export default function HomePage(): React.ReactElement {
       </div>
 
       {/* Final soft fade that blends into Footer (in layout) */}
-      <div aria-hidden className="h-12 w-full bg-gradient-to-b from-cream-100/70 via-forest-950/60 to-forest-950" />
+      <div
+        aria-hidden
+        className="h-12 w-full bg-gradient-to-b from-cream-100/70 via-forest-950/60 to-forest-950"
+      />
     </>
   );
 }

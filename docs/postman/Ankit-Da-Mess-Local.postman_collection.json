@@ -1,0 +1,85 @@
+{
+  "info": {
+    "name": "Ankit Da Mess Local API Tests",
+    "description": "Collection for testing the local Next.js API routes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Public Rooms",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/public/rooms",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "public", "rooms"]
+        }
+      }
+    },
+    {
+      "name": "Public Room by Slug",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/public/rooms?slug=single-room",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "public", "rooms"],
+          "query": [
+            {
+              "key": "slug",
+              "value": "single-room"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Submit Contact Form",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Postman Tester\",\n  \"email\": \"tester@example.com\",\n  \"phone\": \"+919876543210\",\n  \"roomType\": \"single\",\n  \"roomName\": \"Single Room\",\n  \"message\": \"Testing from Postman\",\n  \"source\": \"website\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/contact",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "contact"]
+        }
+      }
+    },
+    {
+      "name": "Admin Login Preview",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"owner@ankitdamess.in\",\n  \"password\": \"preview\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/admin/login",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "admin", "login"]
+        }
+      }
+    }
+  ]
+}
