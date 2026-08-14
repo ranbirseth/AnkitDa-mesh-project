@@ -15,7 +15,7 @@ export default function HomePage(): React.ReactElement {
   // 🔒 TEMPORARY WEBSITE PAYMENT LOCK
   // Before payment: true
   // After payment: false
-  const SITE_LOCKED = true;
+  const SITE_LOCKED = false;
 
   // ===== PAYMENT PENDING PAGE =====
    // ===== PAYMENT PENDING PAGE =====
@@ -50,9 +50,7 @@ export default function HomePage(): React.ReactElement {
             </h1>
 
             <p className="mx-auto mt-4 max-w-xl text-base md:text-lg leading-7 text-white/65">
-              Your website is ready for Access but your deployment free instance is now end at 13/08/26 . This was is one time payment no yearly package need so Please complete the
-              infrastructure and deployment payment below to activate the
-              live website.
+              cx
             </p>
           </div>
 
